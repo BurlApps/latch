@@ -10,8 +10,8 @@ import LocalAuthentication
 
 protocol LTTouchIDDelegate {
     func touchIDGranted()
-    func touchIDDenied(reason: String)
-    func touchIDNotAvailable(reason: String)
+    func touchIDDenied(reason: LatchError)
+    func touchIDNotAvailable(reason: LatchError)
     func touchIDCancelled()
 }
 
@@ -46,7 +46,7 @@ class LTTouchID {
                 } else if authenticationError!.code == LAError.UserFallback.rawValue {
                     self.delegate!.touchIDCancelled()
                 } else {
-                    var failureReason = "Unable to authenticate user"
+                    var failureReason: LatchError!
                     var newError: NSError!
                     
                     if error != nil {
@@ -56,30 +56,28 @@ class LTTouchID {
                     }
                     
                     switch newError!.code {
-                    case LAError.AuthenticationFailed.rawValue:
-                        failureReason = "Authentication failed"
                     case LAError.SystemCancel.rawValue:
-                        failureReason = "System canceled authentication"
+                        failureReason = .TouchIDSystemCancel
                     case LAError.PasscodeNotSet.rawValue:
-                        failureReason = "Passcode not set"
+                        failureReason = .TouchIDPasscodeNotSet
                     default:
-                        failureReason = "Unable to authenticate user"
+                        failureReason = .TouchIDAuthFailed
                     }
                     
                     self.delegate!.touchIDDenied(failureReason)
                 }
             })
         } else {
-            var failureReason = "Local Authentication not available"
+            var failureReason: LatchError!
             
             switch error!.code {
             case LAError.TouchIDNotAvailable.rawValue:
-                failureReason = "Touch ID not available on device"
+                failureReason = .TouchIDNotAvailable
             case LAError.TouchIDNotEnrolled.rawValue:
-                failureReason = "Touch ID is not enrolled yet"
+                failureReason = .TouchIDNotEnrolled
             case LAError.PasscodeNotSet.rawValue:
-                failureReason = "Passcode not set"
-            default: failureReason = "Authentication not available"
+                failureReason = .TouchIDPasscodeNotSet
+            default: failureReason = .TouchIDAuthFailed
             }
             
             self.delegate!.touchIDNotAvailable(failureReason)

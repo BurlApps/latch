@@ -9,9 +9,15 @@
 import Foundation
 import UIKit
 
-@objc protocol LatchDelegate {
-    optional func latchGranted()
-    optional func latchDenied(reason: String)
+protocol LatchDelegate {
+    func latchGranted()
+    func latchDenied(reason: LatchError)
+}
+
+enum LatchError {
+    case TouchIDAuthFailed, TouchIDSystemCancel, TouchIDPasscodeNotSet,
+    TouchIDNotAvailable, TouchIDNotEnrolled, NoAuthMethodsAvailable,
+    TouchIDNotAvailablePasscodeDisabled, TouchIDCancelledPasscodeDisabled
 }
 
 class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
@@ -43,10 +49,11 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     
     // MARK: Instance Methods
     func authorize() {
+        self.passcode.theme = self.passcodeTheme
         self.passcode.rootController = self.rootController
         
         if self.enableTouch == false && self.enablePasscode == false {
-            self.delegate!.latchDenied!("Both Passcode and Touch ID are disabled")
+            self.delegate!.latchDenied(LatchError.NoAuthMethodsAvailable)
             return
         }
         
@@ -61,32 +68,32 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     
     // MARK: LTPasscode Delegate Methods
     func passcodeGranted() {
-        self.delegate!.latchGranted!()
+        self.delegate!.latchGranted()
     }
     
-    func passcodeDenied(reason: String) {
-        self.delegate!.latchDenied!(reason)
+    func passcodeDenied(reason: LatchError) {
+        self.delegate!.latchDenied(reason)
     }
     
     // MARK: LTTouchID Delegate Methods
     func touchIDGranted() {
-        self.delegate!.latchGranted!()
+        self.delegate!.latchGranted()
         self.passcode.dismiss()
     }
     
-    func touchIDDenied(reason: String) {
-        self.delegate!.latchDenied!(reason)
+    func touchIDDenied(reason: LatchError) {
+        self.delegate!.latchDenied(reason)
     }
     
     func touchIDCancelled() {
         if self.enablePasscode == false {
-            self.delegate!.latchDenied!("Touch ID was cancelled and the passcode fallback is disabled")
+            self.delegate!.latchDenied(LatchError.TouchIDCancelledPasscodeDisabled)
         }
     }
     
-    func touchIDNotAvailable(reason: String) {
+    func touchIDNotAvailable(reason: LatchError) {
         if self.enablePasscode == false {
-            self.delegate!.latchDenied!("Touch ID is not available and the passcode fallback is disabled")
+            self.delegate!.latchDenied(LatchError.TouchIDNotAvailablePasscodeDisabled)
         }
     }
 }

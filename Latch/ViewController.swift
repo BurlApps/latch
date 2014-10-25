@@ -46,8 +46,8 @@ class ViewController: UIViewController, LatchDelegate {
         println("access granged")
     }
     
-    func latchDenied(reason: String) {
-        println(reason)
+    func latchDenied(reason: LatchError) {
+        println(reason.hashValue)
     }
 }
 
