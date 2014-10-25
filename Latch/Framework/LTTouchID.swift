@@ -10,8 +10,9 @@ import LocalAuthentication
 
 protocol LTTouchIDDelegate {
     func touchIDGranted()
-    func touchIDenied(reason: String)
+    func touchIDDenied(reason: String)
     func touchIDNotAvailable(reason: String)
+    func touchIDCancelled()
 }
 
 class LTTouchID {
@@ -28,7 +29,7 @@ class LTTouchID {
     }
     
     // MARK: Instance Methods
-    func authorizeUser() {
+    func authorize() {
         var context = LAContext()
         var error : NSError?
         
@@ -38,16 +39,25 @@ class LTTouchID {
                 (success: Bool, authenticationError: NSError?) -> Void in
                 
                 // check whether evaluation of fingerprint was successful
-                if (success || error!.code == LAError.UserFallback.rawValue) && authenticationError == nil {
+                if success && error == nil && authenticationError == nil {
                     self.delegate!.touchIDGranted()
+                } else if authenticationError!.code == LAError.UserCancel.rawValue {
+                    self.delegate!.touchIDCancelled()
+                } else if authenticationError!.code == LAError.UserFallback.rawValue {
+                    self.delegate!.touchIDCancelled()
                 } else {
                     var failureReason = "Unable to authenticate user"
+                    var newError: NSError!
                     
-                    switch error!.code {
+                    if error != nil {
+                        newError = error
+                    } else {
+                        newError = authenticationError
+                    }
+                    
+                    switch newError!.code {
                     case LAError.AuthenticationFailed.rawValue:
                         failureReason = "Authentication failed"
-                    case LAError.UserCancel.rawValue:
-                        failureReason = "User canceled authentication"
                     case LAError.SystemCancel.rawValue:
                         failureReason = "System canceled authentication"
                     case LAError.PasscodeNotSet.rawValue:
@@ -56,7 +66,7 @@ class LTTouchID {
                         failureReason = "Unable to authenticate user"
                     }
                     
-                    self.delegate!.touchIDenied(failureReason)
+                    self.delegate!.touchIDDenied(failureReason)
                 }
             })
         } else {
