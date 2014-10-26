@@ -6,26 +6,27 @@ Easily use Passcode and Touch ID authentication!
 Install
 ========
 
-1. Copy `Framework` folder into your project
-2. Change `Latch.LTPasscode.xib` to `<module>.LTPasscode.xib`
+1) Copy `Framework` folder into your project
+
+2) Change `Latch.LTPasscode.xib` to `<module>.LTPasscode.xib`
 
 Configure
 ==========
 
-1. Create Latch in View Controller
+1) Create Latch in View Controller 
 ``` swift
 self.latch = Latch()
 self.latch.delegate = self
 self.latch.parentController = self
 ```
 
-2. Customize Messages (Optional)
+2) Customize Messages (Optional)
 ``` swift
 self.latch.touchReason = "We need to make sure it's you!"
 self.latch.passcodeInstruction = "Enter Passcode"
 ```
 
-3. Customize Theme (Optional)
+3) Customize Theme (Optional)
 ``` swift
 self.latch.passcodeTheme.logo = UIImage(named: "Logo")!
 self.latch.passcodeTheme.logoTint = nil
@@ -60,7 +61,7 @@ struct LTPasscodeTheme {
 }
 ```
 
-4. Turn On/Off Touch ID & Passcode (Optional)
+4) Turn On/Off Touch ID & Passcode (Optional)
 ``` swift
 self.latch.enableTouch = true // True by default 
 self.latch.enablePasscode = true // True by default 
@@ -69,8 +70,8 @@ self.latch.enablePasscode = true // True by default
 Useage
 ========
 
-Set Passcode: `self.latch.updatePasscode()`
-Remove Passcode: `self.latch.removePasscode()`
-Authorize User: `self.latch.authorize()`
+**Set Passcode**: `self.latch.updatePasscode()`
+**Remove Passcode**: `self.latch.removePasscode()`
+**Authorize User**: `self.latch.authorize()`
 
-Thanks for looking at our small docs. Please use carefully, this was built in less than 12 hours and is no where near perfect. Thanks:)
+Thanks for looking at our small docs. **Please use carefully, this was built in less than 12 hours and is no where near perfect.** Thanks:)
