@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D315A1AC19FCA096008FEB05 /* LTPasscodeBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315A1AB19FCA096008FEB05 /* LTPasscodeBubble.swift */; };
+		D315A1AE19FCB1E3008FEB05 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D315A1AD19FCB1E3008FEB05 /* AudioToolbox.framework */; };
+		D315A1B019FCB837008FEB05 /* LTStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315A1AF19FCB837008FEB05 /* LTStorage.swift */; };
 		D3936F3519FC235200D903CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F3419FC235200D903CB /* AppDelegate.swift */; };
 		D3936F3719FC235200D903CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F3619FC235200D903CB /* ViewController.swift */; };
 		D3936F3C19FC235200D903CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3936F3B19FC235200D903CB /* Images.xcassets */; };
@@ -30,6 +33,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D315A1AB19FCA096008FEB05 /* LTPasscodeBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTPasscodeBubble.swift; path = Latch/Framework/LTPasscodeBubble.swift; sourceTree = "<group>"; };
+		D315A1AD19FCB1E3008FEB05 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D315A1AF19FCB837008FEB05 /* LTStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTStorage.swift; path = Latch/Framework/LTStorage.swift; sourceTree = "<group>"; };
 		D3936F2F19FC235200D903CB /* Latch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Latch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3936F3319FC235200D903CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3936F3419FC235200D903CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D315A1AE19FCB1E3008FEB05 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +74,7 @@
 		D3936F2619FC235200D903CB = {
 			isa = PBXGroup;
 			children = (
+				D315A1AD19FCB1E3008FEB05 /* AudioToolbox.framework */,
 				D3936F5419FC236D00D903CB /* Framework */,
 				D3936F3119FC235200D903CB /* Latch */,
 				D3936F4719FC235200D903CB /* LatchTests */,
@@ -124,8 +132,10 @@
 			isa = PBXGroup;
 			children = (
 				D3936F5B19FC273700D903CB /* Latch.swift */,
+				D315A1AF19FCB837008FEB05 /* LTStorage.swift */,
 				D3936F5919FC25A600D903CB /* LTTouchID.swift */,
 				D3936F6D19FC63AF00D903CB /* LTPasscode.swift */,
+				D315A1AB19FCA096008FEB05 /* LTPasscodeBubble.swift */,
 				D3936F7519FC729D00D903CB /* LTPasscodeKey.swift */,
 				D3936F6E19FC63AF00D903CB /* Latch.LTPasscode.xib */,
 			);
@@ -237,8 +247,10 @@
 				D3936F3719FC235200D903CB /* ViewController.swift in Sources */,
 				D3936F5C19FC273700D903CB /* Latch.swift in Sources */,
 				D3936F3519FC235200D903CB /* AppDelegate.swift in Sources */,
+				D315A1AC19FCA096008FEB05 /* LTPasscodeBubble.swift in Sources */,
 				D3936F6F19FC63AF00D903CB /* LTPasscode.swift in Sources */,
 				D3936F7619FC729D00D903CB /* LTPasscodeKey.swift in Sources */,
+				D315A1B019FCB837008FEB05 /* LTStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,6 +433,7 @@
 				D3936F5019FC235200D903CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D3936F5119FC235200D903CB /* Build configuration list for PBXNativeTarget "LatchTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +442,7 @@
 				D3936F5319FC235200D903CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

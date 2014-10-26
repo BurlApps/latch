@@ -17,7 +17,8 @@ protocol LatchDelegate {
 enum LatchError {
     case TouchIDAuthFailed, TouchIDSystemCancel, TouchIDPasscodeNotSet,
     TouchIDNotAvailable, TouchIDNotEnrolled, NoAuthMethodsAvailable,
-    TouchIDNotAvailablePasscodeDisabled, TouchIDCancelledPasscodeDisabled
+    TouchIDNotAvailablePasscodeDisabled, TouchIDCancelledPasscodeDisabled,
+    PasscodeNotSet
 }
 
 class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
@@ -60,8 +61,8 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
         }
         
         if self.enablePasscode {
-            self.passcode.theme = self.passcodeTheme
             self.passcode.parentController = self.parentController
+            self.passcode.theme = self.passcodeTheme
             self.passcode.updateStyle()
             self.passcode.authorize()
         }
@@ -72,7 +73,7 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
         self.delegate!.latchGranted()
     }
     
-    func passcodeDenied(reason: LatchError) {
+    func passcodeFailed(reason: LatchError) {
         self.delegate!.latchDenied(reason)
     }
     

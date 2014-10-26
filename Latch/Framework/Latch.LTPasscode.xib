@@ -7,6 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LTPasscode" customModule="Latch">
             <connections>
+                <outlet property="bubblesView" destination="r9E-mL-G06" id="cFy-ee-Dny"/>
                 <outlet property="instructionsLabel" destination="Qu9-4s-sa1" id="QV1-oQ-bBi"/>
                 <outlet property="keysView" destination="Ukd-gg-591" id="T7K-w4-46j"/>
                 <outlet property="logoView" destination="KEX-fo-6gr" id="qbq-Pb-vRn"/>
@@ -35,22 +36,38 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ukd-gg-591">
-                    <rect key="frame" x="10" y="215" width="580" height="377"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="10" y="217" width="580" height="375"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9E-mL-G06">
+                    <rect key="frame" x="210" y="167" width="180" height="25"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Aws-uE-WZH"/>
+                        <constraint firstAttribute="width" constant="180" id="XcK-uH-0rV"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Ukd-gg-591" secondAttribute="trailing" constant="10" id="2Ac-WX-pIp"/>
+                <constraint firstAttribute="centerX" secondItem="r9E-mL-G06" secondAttribute="centerX" id="2Mi-1x-uIG"/>
                 <constraint firstItem="Ukd-gg-591" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="6iF-hZ-4hp"/>
+                <constraint firstItem="r9E-mL-G06" firstAttribute="top" secondItem="Qu9-4s-sa1" secondAttribute="bottom" constant="12" id="9A1-PP-hCw"/>
                 <constraint firstAttribute="centerX" secondItem="KEX-fo-6gr" secondAttribute="centerX" id="F6i-og-Unr"/>
-                <constraint firstItem="Ukd-gg-591" firstAttribute="top" secondItem="Qu9-4s-sa1" secondAttribute="bottom" constant="60" id="MCt-o6-IPq"/>
+                <constraint firstItem="Ukd-gg-591" firstAttribute="top" secondItem="Qu9-4s-sa1" secondAttribute="bottom" constant="50" id="MCt-o6-IPq"/>
+                <constraint firstItem="Ukd-gg-591" firstAttribute="top" secondItem="r9E-mL-G06" secondAttribute="bottom" constant="25" id="NG5-tw-Jce"/>
                 <constraint firstAttribute="bottom" secondItem="Ukd-gg-591" secondAttribute="bottom" constant="8" id="UlK-b2-Adj"/>
                 <constraint firstItem="Qu9-4s-sa1" firstAttribute="top" secondItem="KEX-fo-6gr" secondAttribute="bottom" constant="5" id="cJ7-w5-rdi"/>
                 <constraint firstItem="Qu9-4s-sa1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="joP-da-3XR"/>
                 <constraint firstItem="KEX-fo-6gr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="65" id="sQo-NR-Vro"/>
                 <constraint firstAttribute="trailing" secondItem="Qu9-4s-sa1" secondAttribute="trailing" constant="10" id="wsn-bb-D7c"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="MCt-o6-IPq"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

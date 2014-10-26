@@ -29,7 +29,7 @@ class LTPasscodeKey: UIButton {
     private var numberLabel: UILabel!
     
     // MARK: Instance Method
-    convenience init(number: Int, row: CGFloat, column: CGFloat) {
+    convenience init(number: Int, alpha: String!, row: CGFloat, column: CGFloat) {
         self.init()
         
         // Assign Instance Variables
@@ -40,8 +40,26 @@ class LTPasscodeKey: UIButton {
         // Create Number Label
         self.numberLabel = UILabel()
         self.numberLabel.textAlignment = NSTextAlignment.Center
-        self.numberLabel.font = UIFont(name: "HelveticaNeue-Bold", size: 26)
-        self.numberLabel.text = "\(number)"
+        
+        if number >= 0 {
+            self.numberLabel.font = UIFont(name: "HelveticaNeue-Thin", size: 28)
+            self.numberLabel.numberOfLines = 2
+            
+            if alpha != nil {
+                var attributedText = NSMutableAttributedString(string: "\(number)")
+                var alphaText = NSMutableAttributedString(string: "\n\(alpha)")
+                alphaText.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 12)!, range: NSMakeRange(0, alphaText.length))
+                attributedText.appendAttributedString(alphaText)
+                
+                self.numberLabel.attributedText = attributedText
+            } else {
+                self.numberLabel.text = "\(number)"
+            }
+        } else {
+            self.numberLabel.text = "Delete"
+            self.numberLabel.font = UIFont(name: "HelveticaNeue", size: 18)
+        }
+        
         self.addSubview(self.numberLabel)
         
         // Attach Event Listner
@@ -51,18 +69,26 @@ class LTPasscodeKey: UIButton {
     
     // MARK: Gesture Handler
     @IBAction func holdHandle(gesture: UIPanGestureRecognizer) {
-        self.backgroundColor = self.backgroundTouch
-        self.layer.borderColor = self.borderTouch.CGColor
-        self.numberLabel.textColor = self.borderTouch
+        if self.number >= 0 {
+            self.backgroundColor = self.backgroundTouch
+            self.layer.borderColor = self.borderTouch.CGColor
+            self.numberLabel.textColor = self.borderTouch
+        } else {
+            self.numberLabel.alpha = 0.4
+        }
     }
     
     @IBAction func tapHandle(gesture: UIPanGestureRecognizer) {
         self.delegate!.keyPressed(self.number)
         
         UIView.animateWithDuration(0.4, delay: 0.05, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
-            self.backgroundColor = self.background
-            self.layer.borderColor = self.border.CGColor
-            self.numberLabel.textColor = self.border
+            if self.number >= 0 {
+                self.backgroundColor = self.background
+                self.layer.borderColor = self.border.CGColor
+                self.numberLabel.textColor = self.border
+            } else {
+                self.numberLabel.alpha = 1
+            }
         }, completion: nil)
     }
     
@@ -71,7 +97,7 @@ class LTPasscodeKey: UIButton {
         // Create Frame
         var keyWidth: CGFloat = 65
         var keyHeight: CGFloat = 65
-        var keyPadding: CGFloat = 20
+        var keyPadding: CGFloat = 18
         
         var keyCenterX = self.parentView.frame.width/2 - (keyWidth/2)
         var keyX = keyCenterX + ((keyWidth + keyPadding) * (self.column - 1))
@@ -80,11 +106,13 @@ class LTPasscodeKey: UIButton {
         self.frame = CGRectMake(keyX, keyY, keyWidth, keyHeight)
         
         // Update View Styling
-        self.backgroundColor = self.background
-        self.layer.borderColor = self.border.CGColor
-        self.layer.borderWidth = 2
-        self.layer.cornerRadius = keyWidth/2
-        self.layer.masksToBounds = true
+        if self.number >= 0 {
+            self.backgroundColor = self.background
+            self.layer.borderColor = self.border.CGColor
+            self.layer.borderWidth = 1
+            self.layer.cornerRadius = keyWidth/2
+            self.layer.masksToBounds = true
+        }
         
         // Update Label Styling
         self.numberLabel.frame = CGRectMake(0, 0, keyWidth, keyHeight)
