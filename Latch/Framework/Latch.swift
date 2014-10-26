@@ -24,7 +24,7 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     
     // MARK: Instance Variables
     var delegate: LatchDelegate!
-    var rootController: UIViewController!
+    var parentController: UIViewController!
     var touchReason: String = "We need to make sure it's you!"
     var passcodeInstruction: String = "Enter Passcode"
     var enableTouch: Bool = true
@@ -45,13 +45,11 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
         // Initialize Passcode Module
         self.passcode = LTPasscode(instructions: self.passcodeInstruction)
         self.passcode.delegate = self
+        self.passcode.theme = self.passcodeTheme
     }
     
     // MARK: Instance Methods
     func authorize() {
-        self.passcode.theme = self.passcodeTheme
-        self.passcode.rootController = self.rootController
-        
         if self.enableTouch == false && self.enablePasscode == false {
             self.delegate!.latchDenied(LatchError.NoAuthMethodsAvailable)
             return
@@ -62,6 +60,9 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
         }
         
         if self.enablePasscode {
+            self.passcode.theme = self.passcodeTheme
+            self.passcode.parentController = self.parentController
+            self.passcode.updateStyle()
             self.passcode.authorize()
         }
     }

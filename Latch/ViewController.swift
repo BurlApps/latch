@@ -19,7 +19,7 @@ class ViewController: UIViewController, LatchDelegate {
         
         self.latch = Latch()
         self.latch.delegate = self
-        self.latch.rootController = self
+        self.latch.parentController = self
     }
     
     // MARK: IBAction
