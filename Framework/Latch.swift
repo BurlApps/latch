@@ -82,35 +82,35 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     }
     
     // MARK: LTPasscode Delegate Methods
-    func passcodeGranted() {
+    internal func passcodeGranted() {
         self.delegate!.latchGranted()
     }
     
-    func passcodeFailed(reason: LatchError) {
+    internal func passcodeFailed(reason: LatchError) {
         self.delegate!.latchDenied(reason)
     }
     
-    func passcodeSet() {
+    internal func passcodeSet() {
         self.delegate.latchSet()
     }
     
     // MARK: LTTouchID Delegate Methods
-    func touchIDGranted() {
+    internal func touchIDGranted() {
         self.delegate!.latchGranted()
         self.passcode.dismiss()
     }
     
-    func touchIDDenied(reason: LatchError) {
+    internal func touchIDDenied(reason: LatchError) {
         self.delegate!.latchDenied(reason)
     }
     
-    func touchIDCancelled() {
+    internal func touchIDCancelled() {
         if self.enablePasscode == false {
             self.delegate!.latchDenied(LatchError.TouchIDCancelledPasscodeDisabled)
         }
     }
     
-    func touchIDNotAvailable(reason: LatchError) {
+    internal func touchIDNotAvailable(reason: LatchError) {
         if self.enablePasscode == false {
             self.delegate!.latchDenied(LatchError.TouchIDNotAvailablePasscodeDisabled)
         }

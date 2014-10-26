@@ -151,13 +151,13 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     }
     
     internal func granted() {
-        self.dismiss()
-        
         if self.state == .Check {
             self.delegate.passcodeGranted()
         } else {
             self.delegate.passcodeSet()
         }
+        
+        self.dismiss()
     }
     
     internal func configureBubbles() {

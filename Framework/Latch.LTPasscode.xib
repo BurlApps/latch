@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LTPasscode" customModule="Latch">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LTPasscode" customModule="Juicy">
             <connections>
                 <outlet property="bubblesView" destination="r9E-mL-G06" id="cFy-ee-Dny"/>
                 <outlet property="instructionsLabel" destination="Qu9-4s-sa1" id="QV1-oQ-bBi"/>
