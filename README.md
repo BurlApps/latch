@@ -6,7 +6,7 @@ Easily use Passcode and Touch ID authentication!
 Install
 ========
 
-1. Copy Framework Folder Into Your Project
+1. Copy `Framework` folder into your project
 2. Change `Latch.LTPasscode.xib` to `<module>.LTPasscode.xib`
 
 Configure
