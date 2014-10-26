@@ -20,7 +20,7 @@ self.latch.parentController = self
 ```
 
 2. Customize Theme (Optional)
-```
+``` swift
 self.latch.passcodeTheme.logo = UIImage(named: "Logo")!
 self.latch.passcodeTheme.logoTint = nil
 self.latch.passcodeTheme.instructions = UIColor(red:0.96, green:0.33, blue:0.24, alpha:1)
@@ -33,7 +33,7 @@ self.latch.passcodeTheme.keyPadTouchBackground = UIColor(red:0.96, green:0.33, b
 ```
 
 3. Turn On/Off Touch ID & Passcode (Optional)
-```
+``` swift
 self.latch.enableTouch = true // True by default 
 self.latch.enablePasscode = true // True by default 
 ```
