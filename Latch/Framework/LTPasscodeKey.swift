@@ -21,12 +21,12 @@ class LTPasscodeKey: UIButton {
     var border: UIColor!
     var backgroundTouch: UIColor!
     var borderTouch: UIColor!
+    var numberLabel: UILabel!
     
     // MARK: Private Instance Variable
     private var number: Int!
     private var row: CGFloat!
     private var column: CGFloat!
-    private var numberLabel: UILabel!
     
     // MARK: Instance Method
     convenience init(number: Int, alpha: String!, row: CGFloat, column: CGFloat) {

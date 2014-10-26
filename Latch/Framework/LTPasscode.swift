@@ -43,10 +43,16 @@ struct LTPasscodeTheme {
 
 protocol LTPasscodeDelegate {
     func passcodeGranted()
+    func passcodeSet()
     func passcodeFailed(reason: LatchError)
 }
 
 class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
+    
+    // MARK: Instance Enum
+    enum State {
+        case Check, Set, Inactive
+    }
     
     // MARK: Instance Variables
     var delegate: LTPasscodeDelegate!
@@ -55,7 +61,9 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     
     // MARK: Private Instance Variables
     private var storage: LTStorage! = LTStorage()
+    private var state: State = .Inactive
     private var passcode: [String] = []
+    private var previousPasscode: String! = nil
     private var instructions: String!
     private var keys: [LTPasscodeKey] = [
         LTPasscodeKey(number: 1, alpha: "", row: 0, column: 0),
@@ -94,6 +102,10 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     // MARK: UIViewController Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         // Update Instructions Label
         self.instructionsLabel.text = self.instructions
@@ -112,23 +124,43 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     // MARK: Instance Methods
     func authorize() {
         if self.storage.readPasscode() != nil {
+            self.state = .Check
             self.parentController!.presentViewController(self, animated: true, completion: nil)
         } else {
             self.delegate.passcodeFailed(LatchError.PasscodeNotSet)
         }
     }
     
-    func dismiss() {
-        for bubble in self.bubbles {
-            bubble.state = .Normal
-            bubble.updateStyle()
-        }
-        
-        self.parentController!.dismissViewControllerAnimated(true, completion: nil)
-        self.delegate.passcodeGranted()
+    func setPasscode() {
+        self.state = .Set
+        self.parentController!.presentViewController(self, animated: true, completion: nil)
     }
     
-    func configureBubbles() {
+    func dismiss() {
+        if self.state != .Inactive {
+            for bubble in self.bubbles {
+                bubble.state = .Normal
+                bubble.updateStyle()
+            }
+            
+            self.passcode.removeAll(keepCapacity: false)
+            self.previousPasscode = nil
+            self.state = .Inactive
+            self.parentController!.dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+    
+    internal func granted() {
+        self.dismiss()
+        
+        if self.state == .Check {
+            self.delegate.passcodeGranted()
+        } else {
+            self.delegate.passcodeSet()
+        }
+    }
+    
+    internal func configureBubbles() {
         for bubble in self.bubbles {
             bubble.state = .Normal
             bubble.parentView = self.bubblesView
@@ -147,7 +179,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         }
     }
     
-    func configureKeys() {
+    internal func configureKeys() {
         for key in self.keys {
             key.delegate = self
             key.parentView = self.keysView
@@ -158,12 +190,20 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             key.borderTouch = self.theme.keyPadTouchBorder
             key.backgroundTouch = self.theme.keyPadTouchBackground
             
+            if self.keys.last == key {
+                if self.state == .Set {
+                    key.numberLabel.text = "Cancel"
+                } else {
+                    key.numberLabel.text = "Delete"
+                }
+            }
+            
             key.configureKey()
             self.keysView.addSubview(key)
         }
     }
     
-    func updateStyle() {
+    internal func updateStyle() {
         if self.theme == nil {
             self.theme = LTPasscodeTheme()
         }
@@ -183,7 +223,28 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         self.logoView.image = self.theme.logo
     }
     
-    func checkPasscode() {
+    internal func failedPasscode() {
+        self.logoView.tintColor = self.theme.logoErrorTint
+        self.instructionsLabel.textColor = self.theme.instructionsError
+        
+        for bubble in self.bubbles {
+            bubble.state = .Error
+            bubble.updateStyle()
+        }
+        
+        var animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        animation.autoreverses = true
+        animation.repeatCount = 2
+        animation.duration = 0.07
+        animation.values = [NSNumber(float: -10), NSNumber(float: 10)]
+        self.bubblesView.layer.addAnimation(animation, forKey: nil)
+        
+        AudioServicesPlaySystemSound(1352)
+        NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("updateStyle"), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("configureBubbles"), userInfo: nil, repeats: false)
+    }
+    
+    internal func checkPasscode() {
         var passcodeString = ""
         
         for character in self.passcode {
@@ -193,31 +254,53 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         self.passcode.removeAll(keepCapacity: false)
         
         if passcodeString == self.storage.readPasscode() {
-            NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("dismiss"), userInfo: nil, repeats: false)
+            NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("granted"), userInfo: nil, repeats: false)
         } else {
-            self.logoView.tintColor = self.theme.logoErrorTint
-            self.instructionsLabel.textColor = self.theme.instructionsError
-            
-            for bubble in self.bubbles {
-                bubble.state = .Error
-                bubble.updateStyle()
-            }
+            self.failedPasscode()
+        }
+    }
+    
+    internal func storePasscode() {
+        var passcodeString = ""
+        
+        for character in self.passcode {
+            passcodeString += character
+        }
+        
+        self.passcode.removeAll(keepCapacity: false)
+        
+        if self.previousPasscode == nil {
+            self.previousPasscode = passcodeString
+            self.instructionsLabel.text = "Confirm Passcode"
             
             var animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
             animation.autoreverses = true
             animation.repeatCount = 2
             animation.duration = 0.07
             animation.values = [NSNumber(float: -10), NSNumber(float: 10)]
-            self.bubblesView.layer.addAnimation(animation, forKey: nil)
+            self.instructionsLabel.layer.addAnimation(animation, forKey: nil)
             
             AudioServicesPlaySystemSound(1352)
-            NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("updateStyle"), userInfo: nil, repeats: false)
-            NSTimer.scheduledTimerWithTimeInterval(0.2, target: self, selector: Selector("configureBubbles"), userInfo: nil, repeats: false)
+            
+            for bubble in self.bubbles {
+                bubble.state = .Normal
+                bubble.updateStyle()
+            }
+        } else if self.previousPasscode == passcodeString {
+            self.storage.savePasscode(passcodeString)
+            self.granted()
+        } else {
+            self.failedPasscode()
         }
     }
     
     // MARK: LTPasscodeKey Delegate Methods
-    func keyPressed(number: Int) {
+    internal func keyPressed(number: Int) {
+        if number < 0 && self.passcode.count == 0 && self.state == .Set {
+            self.dismiss()
+            return
+        }
+        
         if number >= 0 {
             self.passcode.append("\(number)")
         } else if self.passcode.count > 0 {
@@ -235,7 +318,19 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         }
         
         if self.passcode.count == 4 {
-            self.checkPasscode()
+            if self.state == .Check {
+                self.checkPasscode()
+            } else if self.state == .Set {
+                self.storePasscode()
+            }
+        }
+        
+        if self.state == .Set {
+            if self.passcode.count == 0 {
+                self.keys.last?.numberLabel.text = "Cancel"
+            } else {
+                self.keys.last?.numberLabel.text = "Delete"
+            }
         }
     }
 }

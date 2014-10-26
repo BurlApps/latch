@@ -11,6 +11,7 @@ import UIKit
 
 protocol LatchDelegate {
     func latchGranted()
+    func latchSet()
     func latchDenied(reason: LatchError)
 }
 
@@ -35,6 +36,7 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     // MARK: Private Instance Variables
     private var touchID: LTTouchID!
     private var passcode: LTPasscode!
+    private var storage: LTStorage! = LTStorage()
     
     // MARK: Initializer
     init() {
@@ -68,6 +70,17 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
         }
     }
     
+    func updatePasscode() {
+        self.passcode.parentController = self.parentController
+        self.passcode.theme = self.passcodeTheme
+        self.passcode.updateStyle()
+        self.passcode.setPasscode()
+    }
+    
+    func removePasscode() {
+        self.storage.removePasscode()
+    }
+    
     // MARK: LTPasscode Delegate Methods
     func passcodeGranted() {
         self.delegate!.latchGranted()
@@ -75,6 +88,10 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     
     func passcodeFailed(reason: LatchError) {
         self.delegate!.latchDenied(reason)
+    }
+    
+    func passcodeSet() {
+        self.delegate.latchSet()
     }
     
     // MARK: LTTouchID Delegate Methods

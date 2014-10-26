@@ -41,9 +41,21 @@ class ViewController: UIViewController, LatchDelegate {
         self.latch.authorize()
     }
     
+    @IBAction func changePasscode(sender: UIButton) {
+        self.latch.updatePasscode()
+    }
+    
+    @IBAction func removePasscode(sender: UIButton) {
+        self.latch.removePasscode()
+    }
+    
     // MARK: LatchDelegate Methods
     func latchGranted() {
         println("access granged")
+    }
+    
+    func latchSet() {
+        println("passcode set")
     }
     
     func latchDenied(reason: LatchError) {

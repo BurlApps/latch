@@ -38,11 +38,25 @@ class LTStorage {
     
     // MARK: Instance Methods
     func readPasscode() -> String! {
-        return self.data.objectAtIndex(0) as? String
+        if self.data.count > 0 {
+            return self.data.objectAtIndex(0) as? String
+        } else {
+            return nil
+        }
+    }
+    
+    func removePasscode() {
+        self.data.removeAllObjects()
+        self.data.writeToFile(self.path, atomically: true)
     }
     
     func savePasscode(passcode: String) {
-        self.data.insertObject(passcode, atIndex: 0)
+        if self.data.count > 0 {
+            self.data.replaceObjectAtIndex(0, withObject: passcode)
+        } else {
+            self.data.insertObject(passcode, atIndex: 0)
+        }
+        
         self.data.writeToFile(self.path, atomically: true)
     }
 }
