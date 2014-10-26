@@ -19,20 +19,50 @@ self.latch.delegate = self
 self.latch.parentController = self
 ```
 
-2. Customize Theme (Optional)
+2. Customize Messages (Optional)
+``` swift
+self.latch.touchReason = "We need to make sure it's you!"
+self.latch.passcodeInstruction = "Enter Passcode"
+```
+
+3. Customize Theme (Optional)
 ``` swift
 self.latch.passcodeTheme.logo = UIImage(named: "Logo")!
 self.latch.passcodeTheme.logoTint = nil
 self.latch.passcodeTheme.instructions = UIColor(red:0.96, green:0.33, blue:0.24, alpha:1)
-self.latch.passcodeTheme.bubbleColor = UIColor(red:0.96, green:0.33, blue:0.24, alpha:1)
-self.latch.passcodeTheme.bubbleActiveColor = UIColor(red:0.96, green:0.33, blue:0.24, alpha:1)
-self.latch.passcodeTheme.bubbleActiveBackground = UIColor(red:0.96, green:0.33, blue:0.24, alpha:1)
-self.latch.passcodeTheme.keyPadBorder = UIColor(red:0.96, green:0.33, blue:0.24, alpha:1)
-self.latch.passcodeTheme.keyPadTouchBorder = UIColor(red:0.96, green:0.33, blue:0.24, alpha:1)
-self.latch.passcodeTheme.keyPadTouchBackground = UIColor(red:0.96, green:0.33, blue:0.24, alpha:1)
 ```
 
-3. Turn On/Off Touch ID & Passcode (Optional)
+Passcode theme has these options
+``` swift
+struct LTPasscodeTheme {
+    var logo: UIImage = UIImage(named: "Latch")!
+    var logoTint: UIColor! = UIColor(red:0.12, green:0.67, blue:0.95, alpha:1)
+    var logoErrorTint: UIColor = UIColor.redColor()
+   
+    var instructions: UIColor = UIColor(red:0.01, green:0.66, blue:0.96, alpha:1)
+    var instructionsError: UIColor = UIColor.redColor()
+    
+    var background: UIColor = UIColor.whiteColor()
+    var statusBar: LTPasscodeStatusBar = .Light
+    
+    var keyPadBackground: UIColor = UIColor.whiteColor()
+    var keyPadBorder: UIColor = UIColor(red:0.01, green:0.66, blue:0.96, alpha:1)
+    
+    var keyPadTouchBackground: UIColor = UIColor(red:0.01, green:0.66, blue:0.96, alpha:1)
+    var keyPadTouchBorder: UIColor = UIColor.whiteColor()
+    
+    var bubbleBackground: UIColor = UIColor.whiteColor()
+    var bubbleColor: UIColor = UIColor(red:0.01, green:0.66, blue:0.96, alpha:1)
+    
+    var bubbleActiveBackground: UIColor = UIColor(red:0.01, green:0.66, blue:0.96, alpha:1)
+    var bubbleActiveColor: UIColor = UIColor(red:0.01, green:0.66, blue:0.96, alpha:1)
+    
+    var bubbleErrorBackground: UIColor = UIColor.redColor()
+    var bubbleErrorColor: UIColor = UIColor.redColor()
+}
+```
+
+4. Turn On/Off Touch ID & Passcode (Optional)
 ``` swift
 self.latch.enableTouch = true // True by default 
 self.latch.enablePasscode = true // True by default 
