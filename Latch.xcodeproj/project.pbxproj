@@ -7,19 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D315A1AC19FCA096008FEB05 /* LTPasscodeBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315A1AB19FCA096008FEB05 /* LTPasscodeBubble.swift */; };
 		D315A1AE19FCB1E3008FEB05 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D315A1AD19FCB1E3008FEB05 /* AudioToolbox.framework */; };
-		D315A1B019FCB837008FEB05 /* LTStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315A1AF19FCB837008FEB05 /* LTStorage.swift */; };
+		D315A1BA19FD5B22008FEB05 /* Latch.LTPasscode.xib in Resources */ = {isa = PBXBuildFile; fileRef = D315A1B219FD5B22008FEB05 /* Latch.LTPasscode.xib */; };
+		D315A1BB19FD5B22008FEB05 /* Latch.png in Resources */ = {isa = PBXBuildFile; fileRef = D315A1B319FD5B22008FEB05 /* Latch.png */; };
+		D315A1BC19FD5B22008FEB05 /* Latch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315A1B419FD5B22008FEB05 /* Latch.swift */; };
+		D315A1BD19FD5B22008FEB05 /* LTPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315A1B519FD5B22008FEB05 /* LTPasscode.swift */; };
+		D315A1BE19FD5B22008FEB05 /* LTPasscodeBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315A1B619FD5B22008FEB05 /* LTPasscodeBubble.swift */; };
+		D315A1BF19FD5B22008FEB05 /* LTPasscodeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315A1B719FD5B22008FEB05 /* LTPasscodeKey.swift */; };
+		D315A1C019FD5B22008FEB05 /* LTStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315A1B819FD5B22008FEB05 /* LTStorage.swift */; };
+		D315A1C119FD5B22008FEB05 /* LTTouchID.swift in Sources */ = {isa = PBXBuildFile; fileRef = D315A1B919FD5B22008FEB05 /* LTTouchID.swift */; };
 		D3936F3519FC235200D903CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F3419FC235200D903CB /* AppDelegate.swift */; };
 		D3936F3719FC235200D903CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F3619FC235200D903CB /* ViewController.swift */; };
 		D3936F3C19FC235200D903CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3936F3B19FC235200D903CB /* Images.xcassets */; };
 		D3936F4B19FC235200D903CB /* LatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F4A19FC235200D903CB /* LatchTests.swift */; };
-		D3936F5A19FC25A600D903CB /* LTTouchID.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F5919FC25A600D903CB /* LTTouchID.swift */; };
-		D3936F5C19FC273700D903CB /* Latch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F5B19FC273700D903CB /* Latch.swift */; };
 		D3936F6019FC32DD00D903CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3936F5F19FC32DD00D903CB /* Main.storyboard */; };
-		D3936F6F19FC63AF00D903CB /* LTPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F6D19FC63AF00D903CB /* LTPasscode.swift */; };
-		D3936F7019FC63AF00D903CB /* Latch.LTPasscode.xib in Resources */ = {isa = PBXBuildFile; fileRef = D3936F6E19FC63AF00D903CB /* Latch.LTPasscode.xib */; };
-		D3936F7619FC729D00D903CB /* LTPasscodeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F7519FC729D00D903CB /* LTPasscodeKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,9 +34,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D315A1AB19FCA096008FEB05 /* LTPasscodeBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTPasscodeBubble.swift; path = Latch/Framework/LTPasscodeBubble.swift; sourceTree = "<group>"; };
 		D315A1AD19FCB1E3008FEB05 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		D315A1AF19FCB837008FEB05 /* LTStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTStorage.swift; path = Latch/Framework/LTStorage.swift; sourceTree = "<group>"; };
+		D315A1B219FD5B22008FEB05 /* Latch.LTPasscode.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Latch.LTPasscode.xib; sourceTree = "<group>"; };
+		D315A1B319FD5B22008FEB05 /* Latch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Latch.png; sourceTree = "<group>"; };
+		D315A1B419FD5B22008FEB05 /* Latch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Latch.swift; sourceTree = "<group>"; };
+		D315A1B519FD5B22008FEB05 /* LTPasscode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPasscode.swift; sourceTree = "<group>"; };
+		D315A1B619FD5B22008FEB05 /* LTPasscodeBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPasscodeBubble.swift; sourceTree = "<group>"; };
+		D315A1B719FD5B22008FEB05 /* LTPasscodeKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPasscodeKey.swift; sourceTree = "<group>"; };
+		D315A1B819FD5B22008FEB05 /* LTStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTStorage.swift; sourceTree = "<group>"; };
+		D315A1B919FD5B22008FEB05 /* LTTouchID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTTouchID.swift; sourceTree = "<group>"; };
 		D3936F2F19FC235200D903CB /* Latch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Latch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3936F3319FC235200D903CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3936F3419FC235200D903CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,12 +51,7 @@
 		D3936F4419FC235200D903CB /* LatchTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LatchTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3936F4919FC235200D903CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3936F4A19FC235200D903CB /* LatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatchTests.swift; sourceTree = "<group>"; };
-		D3936F5919FC25A600D903CB /* LTTouchID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTTouchID.swift; path = Latch/Framework/LTTouchID.swift; sourceTree = "<group>"; };
-		D3936F5B19FC273700D903CB /* Latch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Latch.swift; path = Latch/Framework/Latch.swift; sourceTree = "<group>"; };
 		D3936F5F19FC32DD00D903CB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Latch/Main.storyboard; sourceTree = "<group>"; };
-		D3936F6D19FC63AF00D903CB /* LTPasscode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTPasscode.swift; path = Latch/Framework/LTPasscode.swift; sourceTree = "<group>"; };
-		D3936F6E19FC63AF00D903CB /* Latch.LTPasscode.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Latch.LTPasscode.xib; path = Latch/Framework/Latch.LTPasscode.xib; sourceTree = "<group>"; };
-		D3936F7519FC729D00D903CB /* LTPasscodeKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTPasscodeKey.swift; path = Latch/Framework/LTPasscodeKey.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,14 +73,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D315A1B119FD5B22008FEB05 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				D315A1B219FD5B22008FEB05 /* Latch.LTPasscode.xib */,
+				D315A1B319FD5B22008FEB05 /* Latch.png */,
+				D315A1B419FD5B22008FEB05 /* Latch.swift */,
+				D315A1B519FD5B22008FEB05 /* LTPasscode.swift */,
+				D315A1B619FD5B22008FEB05 /* LTPasscodeBubble.swift */,
+				D315A1B719FD5B22008FEB05 /* LTPasscodeKey.swift */,
+				D315A1B819FD5B22008FEB05 /* LTStorage.swift */,
+				D315A1B919FD5B22008FEB05 /* LTTouchID.swift */,
+			);
+			path = Framework;
+			sourceTree = "<group>";
+		};
 		D3936F2619FC235200D903CB = {
 			isa = PBXGroup;
 			children = (
-				D315A1AD19FCB1E3008FEB05 /* AudioToolbox.framework */,
-				D3936F5419FC236D00D903CB /* Framework */,
+				D315A1B119FD5B22008FEB05 /* Framework */,
 				D3936F3119FC235200D903CB /* Latch */,
 				D3936F4719FC235200D903CB /* LatchTests */,
 				D3936F3019FC235200D903CB /* Products */,
+				D315A1AD19FCB1E3008FEB05 /* AudioToolbox.framework */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,20 +143,6 @@
 				D3936F4919FC235200D903CB /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		D3936F5419FC236D00D903CB /* Framework */ = {
-			isa = PBXGroup;
-			children = (
-				D3936F5B19FC273700D903CB /* Latch.swift */,
-				D315A1AF19FCB837008FEB05 /* LTStorage.swift */,
-				D3936F5919FC25A600D903CB /* LTTouchID.swift */,
-				D3936F6D19FC63AF00D903CB /* LTPasscode.swift */,
-				D315A1AB19FCA096008FEB05 /* LTPasscodeBubble.swift */,
-				D3936F7519FC729D00D903CB /* LTPasscodeKey.swift */,
-				D3936F6E19FC63AF00D903CB /* Latch.LTPasscode.xib */,
-			);
-			name = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,9 +226,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D315A1BB19FD5B22008FEB05 /* Latch.png in Resources */,
 				D3936F3C19FC235200D903CB /* Images.xcassets in Resources */,
+				D315A1BA19FD5B22008FEB05 /* Latch.LTPasscode.xib in Resources */,
 				D3936F6019FC32DD00D903CB /* Main.storyboard in Resources */,
-				D3936F7019FC63AF00D903CB /* Latch.LTPasscode.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,14 +247,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3936F5A19FC25A600D903CB /* LTTouchID.swift in Sources */,
 				D3936F3719FC235200D903CB /* ViewController.swift in Sources */,
-				D3936F5C19FC273700D903CB /* Latch.swift in Sources */,
+				D315A1BE19FD5B22008FEB05 /* LTPasscodeBubble.swift in Sources */,
+				D315A1C119FD5B22008FEB05 /* LTTouchID.swift in Sources */,
+				D315A1BD19FD5B22008FEB05 /* LTPasscode.swift in Sources */,
 				D3936F3519FC235200D903CB /* AppDelegate.swift in Sources */,
-				D315A1AC19FCA096008FEB05 /* LTPasscodeBubble.swift in Sources */,
-				D3936F6F19FC63AF00D903CB /* LTPasscode.swift in Sources */,
-				D3936F7619FC729D00D903CB /* LTPasscodeKey.swift in Sources */,
-				D315A1B019FCB837008FEB05 /* LTStorage.swift in Sources */,
+				D315A1BC19FD5B22008FEB05 /* Latch.swift in Sources */,
+				D315A1BF19FD5B22008FEB05 /* LTPasscodeKey.swift in Sources */,
+				D315A1C019FD5B22008FEB05 /* LTStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
