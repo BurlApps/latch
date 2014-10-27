@@ -11,7 +11,9 @@ Install
 2) Change `Latch.LTPasscode.xib` to `<module>.LTPasscode.xib`
 
 Configure
-==========
+===========
+See example: https://github.com/JuicyApp/Latch/blob/master/Latch/ViewController.swift
+
 
 1) Create Latch in View Controller 
 ``` swift
@@ -86,7 +88,9 @@ Useage
 ========
 
 **Set Passcode**: `self.latch.updatePasscode()`
+
 **Remove Passcode**: `self.latch.removePasscode()`
+
 **Authorize User**: `self.latch.authorize()`
 
 Thanks for looking at our small docs. **Please use carefully, this was built in less than 12 hours and is no where near perfect.** Thanks:)
