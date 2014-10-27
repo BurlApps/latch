@@ -10,7 +10,7 @@ Install
 
 2) Change `Latch.LTPasscode.xib` to `<module>.LTPasscode.xib`
 
-Configure ([Example](https://github.com/JuicyApp/Latch/blob/master/Latch/ViewController.swift))
+Configure ([Example](https://github.com/JuicyApp/Latch/blob/master/Example/Latch/ViewController.swift))
 ===========
 
 1) Create Latch in View Controller 
