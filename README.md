@@ -47,7 +47,7 @@ self.latch.passcodeTheme.logo = UIImage(named: "Logo")!
 self.latch.passcodeTheme.logoTint = nil
 self.latch.passcodeTheme.instructions = UIColor(red:0.96, green:0.33, blue:0.24, alpha:1)
 
-//Passcode theme has these options
+//Passcode theme options
 struct LTPasscodeTheme {
     var logo: UIImage = UIImage(named: "Latch")!
     var logoTint: UIColor! = UIColor(red:0.12, green:0.67, blue:0.95, alpha:1)
