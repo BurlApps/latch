@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B453F4A9-2517-47BA-A9A7-FE7074703BD7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Testers</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>E63D0CD2C9287FE824F930A6644AC1BFC5727DA0</key>
+		<string>github.com:bvallelunga/Latch.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Testers.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>E63D0CD2C9287FE824F930A6644AC1BFC5727DA0</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:bvallelunga/Latch.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E63D0CD2C9287FE824F930A6644AC1BFC5727DA0</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E63D0CD2C9287FE824F930A6644AC1BFC5727DA0</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Latch</string>
+		</dict>
+	</array>
+</dict>
+</plist>

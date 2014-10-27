@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="FfQ-LZ-6Vc">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="faY-z4-dt7">
+            <objects>
+                <viewController id="FfQ-LZ-6Vc" customClass="ViewController" customModule="Latch" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kYl-RW-rjH"/>
+                        <viewControllerLayoutGuide type="bottom" id="8y4-q3-dMN"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oid-dh-qOc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogN-Mn-JJw">
+                                <rect key="frame" x="259" y="209" width="83" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Authorize">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="authorize:" destination="FfQ-LZ-6Vc" eventType="touchUpInside" id="VZE-gE-GO1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v9z-9c-U2w">
+                                <rect key="frame" x="212" y="278" width="176" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Authorize Passcode">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="authorizePasscode:" destination="FfQ-LZ-6Vc" eventType="touchUpInside" id="u31-FJ-rWZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ohb-xo-VW2">
+                                <rect key="frame" x="217" y="354" width="166" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Authorize Touch ID">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="authorizeTouch:" destination="FfQ-LZ-6Vc" eventType="touchUpInside" id="4Qx-2O-ZA0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EeG-pc-fH1">
+                                <rect key="frame" x="219" y="147" width="162" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Change Passcode">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changePasscode:" destination="FfQ-LZ-6Vc" eventType="touchUpInside" id="67f-3U-3dE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p4d-v0-6JK">
+                                <rect key="frame" x="217" y="417" width="166" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="166" id="RJw-v4-7CT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Remove Passcode">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="removePasscode:" destination="FfQ-LZ-6Vc" eventType="touchUpInside" id="edw-ga-j2R"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ohb-xo-VW2" firstAttribute="top" secondItem="v9z-9c-U2w" secondAttribute="bottom" constant="40" id="0BV-cM-rEw"/>
+                            <constraint firstItem="Ohb-xo-VW2" firstAttribute="centerX" secondItem="oid-dh-qOc" secondAttribute="centerX" id="Egq-wl-U7f"/>
+                            <constraint firstItem="Ohb-xo-VW2" firstAttribute="centerX" secondItem="v9z-9c-U2w" secondAttribute="centerX" id="Hfi-KQ-Wdz"/>
+                            <constraint firstAttribute="centerX" secondItem="EeG-pc-fH1" secondAttribute="centerX" id="IKM-gU-jRA"/>
+                            <constraint firstItem="8y4-q3-dMN" firstAttribute="top" secondItem="Ohb-xo-VW2" secondAttribute="bottom" constant="210" id="Q1a-DM-p3w"/>
+                            <constraint firstItem="p4d-v0-6JK" firstAttribute="top" secondItem="Ohb-xo-VW2" secondAttribute="bottom" constant="27" id="Rfv-xM-bnd"/>
+                            <constraint firstItem="Ohb-xo-VW2" firstAttribute="centerX" secondItem="ogN-Mn-JJw" secondAttribute="centerX" id="UFU-Ua-oNQ"/>
+                            <constraint firstItem="v9z-9c-U2w" firstAttribute="top" secondItem="ogN-Mn-JJw" secondAttribute="bottom" constant="33" id="pR7-nR-xg6"/>
+                            <constraint firstAttribute="centerX" secondItem="p4d-v0-6JK" secondAttribute="centerX" id="sHe-37-sDL"/>
+                            <constraint firstItem="ogN-Mn-JJw" firstAttribute="top" secondItem="EeG-pc-fH1" secondAttribute="bottom" constant="26" id="zxv-Vw-hxC"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kMZ-Q4-9e2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="687" y="165"/>
+        </scene>
+    </scenes>
+</document>
