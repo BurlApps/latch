@@ -16,17 +16,32 @@ Configure
 1) Create Latch in View Controller 
 ``` swift
 self.latch = Latch()
-self.latch.delegate = self
+self.latch.delegate = self // Make sure to add LatchDelegate to Class
 self.latch.parentController = self
 ```
 
-2) Customize Messages (Optional)
+2) Add Delegate Methods
+``` swift
+func latchGranted() {
+    println("access granged")
+}
+
+func latchSet() {
+    println("passcode set")
+}
+
+func latchDenied(reason: LatchError) {
+    println(reason.hashValue)
+}
+```
+
+3) Customize Messages (Optional)
 ``` swift
 self.latch.touchReason = "We need to make sure it's you!"
 self.latch.passcodeInstruction = "Enter Passcode"
 ```
 
-3) Customize Theme (Optional)
+4) Customize Theme (Optional)
 ``` swift
 self.latch.passcodeTheme.logo = UIImage(named: "Logo")!
 self.latch.passcodeTheme.logoTint = nil
@@ -61,7 +76,7 @@ struct LTPasscodeTheme {
 }
 ```
 
-4) Turn On/Off Touch ID & Passcode (Optional)
+5) Turn On/Off Touch ID & Passcode (Optional)
 ``` swift
 self.latch.enableTouch = true // True by default 
 self.latch.enablePasscode = true // True by default 
