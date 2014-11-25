@@ -82,7 +82,7 @@ self.latch.enableTouch = true // True by default
 self.latch.enablePasscode = true // True by default 
 ```
 
-Useage
+Usage
 ========
 
 **Set Passcode**: `self.latch.updatePasscode()`
