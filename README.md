@@ -1,7 +1,19 @@
 Latch
 =====
 
-Easily use Passcode and Touch ID authentication!
+**Hackathon:** Producthunt Hackathon
+
+**Date:** November 25, 2014
+
+**Placed:** N/A
+
+**Coding Time:** 12 hours
+
+**Team Members:** 2
+
+**Description:** Easily use Passcode and Touch ID authentication!
+
+[![Latch](http://img.youtube.com/vi/HjNdyExQf8A/maxresdefault.jpg)](https://www.youtube.com/watch?v=HjNdyExQf8A)
 
 Install
 ========
