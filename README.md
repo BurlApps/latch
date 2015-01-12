@@ -13,7 +13,7 @@ Latch
 
 **Description:** Easily use Passcode and Touch ID authentication!
 
-[![Latch](http://img.youtube.com/vi/HjNdyExQf8A/maxresdefault.jpg)](https://www.youtube.com/watch?v=HjNdyExQf8A)
+[![Latch](https://github.com/bvallelunga/latch/raw/master/screenshot.png)](https://www.youtube.com/watch?v=HjNdyExQf8A)
 
 Install
 ========
