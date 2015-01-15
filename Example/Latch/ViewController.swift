@@ -59,7 +59,7 @@ class ViewController: UIViewController, LatchDelegate {
     }
     
     func latchDenied(reason: LatchError) {
-        println(reason.hashValue)
+        println(reason)
     }
 }
 
