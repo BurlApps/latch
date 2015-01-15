@@ -15,11 +15,34 @@ protocol LatchDelegate {
     func latchDenied(reason: LatchError)
 }
 
-enum LatchError {
+enum LatchError: Printable {
     case TouchIDAuthFailed, TouchIDSystemCancel, TouchIDPasscodeNotSet,
     TouchIDNotAvailable, TouchIDNotEnrolled, NoAuthMethodsAvailable,
     TouchIDNotAvailablePasscodeDisabled, TouchIDCancelledPasscodeDisabled,
     PasscodeNotSet
+  
+    var description: String {
+      switch self {
+      case .TouchIDAuthFailed:
+        return "Touch ID authorization failed."
+      case .TouchIDSystemCancel:
+        return "Touch ID system canceled."
+      case .TouchIDPasscodeNotSet:
+        return "Touch ID passcode not set."
+      case .TouchIDNotAvailable:
+        return "Touch ID not available."
+      case .TouchIDNotEnrolled:
+        return "Touch ID not enrolled."
+      case .NoAuthMethodsAvailable:
+        return "No authorization methods available."
+      case .TouchIDNotAvailablePasscodeDisabled:
+        return "Touch ID not available and passcode disabled."
+      case .TouchIDCancelledPasscodeDisabled:
+        return "Touch ID cancelled and passcode disabled."
+      case .PasscodeNotSet:
+        return "Passcode not set."
+      }
+    }
 }
 
 class Latch: LTTouchIDDelegate, LTPasscodeDelegate {

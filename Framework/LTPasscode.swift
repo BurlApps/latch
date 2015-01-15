@@ -271,21 +271,33 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         
         if self.previousPasscode == nil {
             self.previousPasscode = passcodeString
-            self.instructionsLabel.text = "Confirm Passcode"
+          
+          let originalInstructionsLabelFrame = self.instructionsLabel.frame
+          let originalBubbleFrame = self.bubblesView.frame
+          let screenWidth = UIScreen.mainScreen().bounds.size.width
+          
+          UIView.animateWithDuration(0.5, delay: 0.5, options: UIViewAnimationOptions.CurveEaseOut, animations: {
             
-            var animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
-            animation.autoreverses = true
-            animation.repeatCount = 2
-            animation.duration = 0.07
-            animation.values = [NSNumber(float: -10), NSNumber(float: 10)]
-            self.instructionsLabel.layer.addAnimation(animation, forKey: nil)
+            self.instructionsLabel.frame.origin.x = -screenWidth
+            self.bubblesView.frame.origin.x = -screenWidth
             
-            AudioServicesPlaySystemSound(1352)
-            
-            for bubble in self.bubbles {
+            }, completion: { finished in
+              
+              self.instructionsLabel.text = "Confirm Passcode"
+              self.instructionsLabel.frame.origin.x = screenWidth
+              self.bubblesView.frame.origin.x = screenWidth
+              for bubble in self.bubbles {
                 bubble.state = .Normal
                 bubble.updateStyle()
-            }
+              }
+              
+              UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+                self.instructionsLabel.frame = originalInstructionsLabelFrame
+                self.bubblesView.frame = originalBubbleFrame
+                }, completion: nil)
+              
+          })
+          
         } else if self.previousPasscode == passcodeString {
             self.storage.savePasscode(passcodeString)
             self.granted()
