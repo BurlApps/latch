@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 import AudioToolbox
 
-enum LTPasscodeStatusBar {
+public enum LTPasscodeStatusBar {
     case Dark, Light
 }
 
-struct LTPasscodeTheme {
+public struct LTPasscodeTheme {
     var logo: UIImage = UIImage(named: "Latch")!
     var logoTint: UIColor! = UIColor(red:0.12, green:0.67, blue:0.95, alpha:1)
     var logoErrorTint: UIColor = UIColor.redColor()
@@ -46,6 +46,8 @@ protocol LTPasscodeDelegate {
     func passcodeSet()
     func passcodeFailed(reason: LatchError)
 }
+
+private let FrameworkBundle = NSBundle(path: NSBundle.mainBundle().privateFrameworksPath!.stringByAppendingPathComponent("Latch.framework"))
 
 class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     
@@ -93,8 +95,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     
     // MARK: Initializer
     convenience init(instructions: String) {
-        self.init(nibName: "LTPasscode", bundle: NSBundle.mainBundle())
-        
+        self.init(nibName: "LTPasscode", bundle: FrameworkBundle)
         self.instructions = instructions
         self.updateStyle()
     }
