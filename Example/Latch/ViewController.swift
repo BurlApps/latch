@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Latch
 
 class ViewController: UIViewController, LatchDelegate {
     

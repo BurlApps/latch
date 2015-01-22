@@ -9,19 +9,19 @@
 import Foundation
 import UIKit
 
-protocol LatchDelegate {
+public protocol LatchDelegate {
     func latchGranted()
     func latchSet()
     func latchDenied(reason: LatchError)
 }
 
-enum LatchError: Printable {
+public enum LatchError: Printable {
     case TouchIDAuthFailed, TouchIDSystemCancel, TouchIDPasscodeNotSet,
     TouchIDNotAvailable, TouchIDNotEnrolled, NoAuthMethodsAvailable,
     TouchIDNotAvailablePasscodeDisabled, TouchIDCancelledPasscodeDisabled,
     PasscodeNotSet
   
-    var description: String {
+    public var description: String {
       switch self {
       case .TouchIDAuthFailed:
         return "Touch ID authorization failed."
@@ -45,16 +45,16 @@ enum LatchError: Printable {
     }
 }
 
-class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
+public class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     
     // MARK: Instance Variables
-    var delegate: LatchDelegate!
-    var parentController: UIViewController!
-    var touchReason: String = "We need to make sure it's you!"
-    var passcodeInstruction: String = "Enter Passcode"
-    var enableTouch: Bool = true
-    var enablePasscode: Bool = true
-    var passcodeTheme: LTPasscodeTheme = LTPasscodeTheme()
+    public var delegate: LatchDelegate!
+    public var parentController: UIViewController!
+    public var touchReason: String = "We need to make sure it's you!"
+    public var passcodeInstruction: String = "Enter Passcode"
+    public var enableTouch: Bool = true
+    public var enablePasscode: Bool = true
+    public var passcodeTheme: LTPasscodeTheme = LTPasscodeTheme()
     
     // MARK: Private Instance Variables
     private var touchID: LTTouchID!
@@ -62,7 +62,7 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     private var storage: LTStorage! = LTStorage()
     
     // MARK: Initializer
-    init() {
+    public init() {
         
         // Initialize TouchID Module
         self.touchID = LTTouchID(reason: self.touchReason)
@@ -75,7 +75,7 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     }
     
     // MARK: Instance Methods
-    func authorize() {
+    public func authorize() {
         if self.enableTouch == false && self.enablePasscode == false {
             self.delegate!.latchDenied(LatchError.NoAuthMethodsAvailable)
             return
@@ -93,27 +93,27 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
         }
     }
     
-    func updatePasscode() {
+    public func updatePasscode() {
         self.passcode.parentController = self.parentController
         self.passcode.theme = self.passcodeTheme
         self.passcode.updateStyle()
         self.passcode.setPasscode()
     }
     
-    func removePasscode() {
+    public func removePasscode() {
         self.storage.removePasscode()
     }
     
     // MARK: LTPasscode Delegate Methods
-    internal func passcodeGranted() {
+    public func passcodeGranted() {
         self.delegate!.latchGranted()
     }
     
-    internal func passcodeFailed(reason: LatchError) {
+    public func passcodeFailed(reason: LatchError) {
         self.delegate!.latchDenied(reason)
     }
     
-    internal func passcodeSet() {
+    public func passcodeSet() {
         self.delegate.latchSet()
     }
     
