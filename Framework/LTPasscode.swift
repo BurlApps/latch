@@ -93,7 +93,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     
     // MARK: Initializer
     convenience init(instructions: String) {
-        self.init()
+        self.init(nibName: "LTPasscode", bundle: NSBundle.mainBundle())
         
         self.instructions = instructions
         self.updateStyle()
