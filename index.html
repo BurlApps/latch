@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Latch by SooJuicy</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Latch</h1>
+        <p>Easily use Passcode and Touch ID authentication! (Producthunt Hackathon)</p>
+
+        <p class="view"><a href="https://github.com/SooJuicy/Latch">View the Project on GitHub <small>SooJuicy/Latch</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/SooJuicy/Latch/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/SooJuicy/Latch/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/SooJuicy/Latch">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="latch" class="anchor" href="#latch" aria-hidden="true"><span class="octicon octicon-link"></span></a>Latch</h1>
+
+<p><strong>Hackathon:</strong> Producthunt Hackathon</p>
+
+<p><strong>Date:</strong> November 25, 2014</p>
+
+<p><strong>Placed:</strong> N/A</p>
+
+<p><strong>Coding Time:</strong> 12 hours</p>
+
+<p><strong>Team Members:</strong> 2</p>
+
+<p><strong>Description:</strong> Easily use Passcode and Touch ID authentication!</p>
+
+<p><a href="https://www.youtube.com/watch?v=HjNdyExQf8A"><img src="https://github.com/bvallelunga/latch/raw/master/screenshot.png" alt="Latch"></a></p>
+
+<h1>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h1>
+
+<p>1) Copy <code>Framework</code> folder into your project</p>
+
+<p>2) Change <code>Latch.LTPasscode.xib</code> to <code>&lt;module&gt;.LTPasscode.xib</code></p>
+
+<h1>
+<a id="configure-example" class="anchor" href="#configure-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configure (<a href="https://github.com/JuicyApp/Latch/blob/master/Example/Latch/ViewController.swift">Example</a>)</h1>
+
+<p>1) Create Latch in View Controller </p>
+
+<div class="highlight highlight-swift"><pre><span class="pl-k">self</span><span class="pl-k">.</span>latch <span class="pl-k">=</span> Latch()
+<span class="pl-k">self</span><span class="pl-k">.</span>latch<span class="pl-k">.</span>delegate <span class="pl-k">=</span> <span class="pl-k">self</span> <span class="pl-c">// Make sure to add LatchDelegate to Class</span>
+<span class="pl-k">self</span><span class="pl-k">.</span>latch<span class="pl-k">.</span>parentController <span class="pl-k">=</span> <span class="pl-k">self</span></pre></div>
+
+<p>2) Add Delegate Methods</p>
+
+<div class="highlight highlight-swift"><pre><span class="pl-st">func</span> <span class="pl-en">latchGranted</span>() {
+    println(<span class="pl-s1"><span class="pl-pds">"</span>access granged<span class="pl-pds">"</span></span>)
+}
+
+<span class="pl-st">func</span> <span class="pl-en">latchSet</span>() {
+    println(<span class="pl-s1"><span class="pl-pds">"</span>passcode set<span class="pl-pds">"</span></span>)
+}
+
+<span class="pl-st">func</span> <span class="pl-en">latchDenied</span>(reason: LatchError) {
+    println(reason<span class="pl-k">.</span>hashValue)
+}</pre></div>
+
+<p>3) Customize Messages (Optional)</p>
+
+<div class="highlight highlight-swift"><pre><span class="pl-k">self</span><span class="pl-k">.</span>latch<span class="pl-k">.</span>touchReason <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>We need to make sure it's you!<span class="pl-pds">"</span></span>
+<span class="pl-k">self</span><span class="pl-k">.</span>latch<span class="pl-k">.</span>passcodeInstruction <span class="pl-k">=</span> <span class="pl-s1"><span class="pl-pds">"</span>Enter Passcode<span class="pl-pds">"</span></span></pre></div>
+
+<p>4) Customize Theme (Optional)</p>
+
+<div class="highlight highlight-swift"><pre><span class="pl-k">self</span><span class="pl-k">.</span>latch<span class="pl-k">.</span>passcodeTheme<span class="pl-k">.</span>logo <span class="pl-k">=</span> UIImage(named: <span class="pl-s1"><span class="pl-pds">"</span>Logo<span class="pl-pds">"</span></span>)<span class="pl-k">!</span>
+<span class="pl-k">self</span><span class="pl-k">.</span>latch<span class="pl-k">.</span>passcodeTheme<span class="pl-k">.</span>logoTint <span class="pl-k">=</span> nil
+<span class="pl-k">self</span><span class="pl-k">.</span>latch<span class="pl-k">.</span>passcodeTheme<span class="pl-k">.</span>instructions <span class="pl-k">=</span> UIColor(red:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">96</span>, green:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">33</span>, blue:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">24</span>, alpha:<span class="pl-c1">1</span>)
+
+<span class="pl-c">//Passcode theme options</span>
+<span class="pl-st">struct</span> LTPasscodeTheme {
+    <span class="pl-st">var</span> logo: UIImage <span class="pl-k">=</span> UIImage(named: <span class="pl-s1"><span class="pl-pds">"</span>Latch<span class="pl-pds">"</span></span>)<span class="pl-k">!</span>
+    <span class="pl-st">var</span> logoTint: UIColor<span class="pl-k">!</span> <span class="pl-k">=</span> UIColor(red:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">12</span>, green:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">67</span>, blue:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">95</span>, alpha:<span class="pl-c1">1</span>)
+    <span class="pl-st">var</span> logoErrorTint: UIColor <span class="pl-k">=</span> UIColor<span class="pl-k">.</span>redColor()
+
+    <span class="pl-st">var</span> instructions: UIColor <span class="pl-k">=</span> UIColor(red:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">01</span>, green:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">66</span>, blue:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">96</span>, alpha:<span class="pl-c1">1</span>)
+    <span class="pl-st">var</span> instructionsError: UIColor <span class="pl-k">=</span> UIColor<span class="pl-k">.</span>redColor()
+
+    <span class="pl-st">var</span> background: UIColor <span class="pl-k">=</span> UIColor<span class="pl-k">.</span>whiteColor()
+    <span class="pl-st">var</span> statusBar: LTPasscodeStatusBar <span class="pl-k">=</span> <span class="pl-k">.</span>Light
+
+    <span class="pl-st">var</span> keyPadBackground: UIColor <span class="pl-k">=</span> UIColor<span class="pl-k">.</span>whiteColor()
+    <span class="pl-st">var</span> keyPadBorder: UIColor <span class="pl-k">=</span> UIColor(red:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">01</span>, green:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">66</span>, blue:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">96</span>, alpha:<span class="pl-c1">1</span>)
+
+    <span class="pl-st">var</span> keyPadTouchBackground: UIColor <span class="pl-k">=</span> UIColor(red:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">01</span>, green:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">66</span>, blue:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">96</span>, alpha:<span class="pl-c1">1</span>)
+    <span class="pl-st">var</span> keyPadTouchBorder: UIColor <span class="pl-k">=</span> UIColor<span class="pl-k">.</span>whiteColor()
+
+    <span class="pl-st">var</span> bubbleBackground: UIColor <span class="pl-k">=</span> UIColor<span class="pl-k">.</span>whiteColor()
+    <span class="pl-st">var</span> bubbleColor: UIColor <span class="pl-k">=</span> UIColor(red:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">01</span>, green:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">66</span>, blue:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">96</span>, alpha:<span class="pl-c1">1</span>)
+
+    <span class="pl-st">var</span> bubbleActiveBackground: UIColor <span class="pl-k">=</span> UIColor(red:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">01</span>, green:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">66</span>, blue:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">96</span>, alpha:<span class="pl-c1">1</span>)
+    <span class="pl-st">var</span> bubbleActiveColor: UIColor <span class="pl-k">=</span> UIColor(red:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">01</span>, green:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">66</span>, blue:<span class="pl-c1">0</span><span class="pl-k">.</span><span class="pl-c1">96</span>, alpha:<span class="pl-c1">1</span>)
+
+    <span class="pl-st">var</span> bubbleErrorBackground: UIColor <span class="pl-k">=</span> UIColor<span class="pl-k">.</span>redColor()
+    <span class="pl-st">var</span> bubbleErrorColor: UIColor <span class="pl-k">=</span> UIColor<span class="pl-k">.</span>redColor()
+}</pre></div>
+
+<p>5) Turn On/Off Touch ID &amp; Passcode (Optional)</p>
+
+<div class="highlight highlight-swift"><pre><span class="pl-k">self</span><span class="pl-k">.</span>latch<span class="pl-k">.</span>enableTouch <span class="pl-k">=</span> <span class="pl-c1">true</span> <span class="pl-c">// True by default </span>
+<span class="pl-k">self</span><span class="pl-k">.</span>latch<span class="pl-k">.</span>enablePasscode <span class="pl-k">=</span> <span class="pl-c1">true</span> <span class="pl-c">// True by default </span></pre></div>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h1>
+
+<p><strong>Set Passcode</strong>: <code>self.latch.updatePasscode()</code></p>
+
+<p><strong>Remove Passcode</strong>: <code>self.latch.removePasscode()</code></p>
+
+<p><strong>Authorize User</strong>: <code>self.latch.authorize()</code></p>
+
+<p>Thanks for looking at our small docs. <strong>Please use carefully, this was built in less than 12 hours and is no where near perfect.</strong> Thanks:)</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/SooJuicy">SooJuicy</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
