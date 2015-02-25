@@ -51,6 +51,9 @@ class ViewController: UIViewController, LatchDelegate {
     }
     
     // MARK: LatchDelegate Methods
+    func latchCanceled() {
+        println("canceled")
+    }
     func latchGranted() {
         println("access granged")
     }

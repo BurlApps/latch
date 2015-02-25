@@ -13,6 +13,7 @@ public protocol LatchDelegate {
     func latchGranted()
     func latchSet()
     func latchDenied(reason: LatchError)
+    func latchCanceled()
 }
 
 public enum LatchError: Printable {
@@ -115,6 +116,10 @@ public class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     
     public func passcodeSet() {
         self.delegate.latchSet()
+    }
+  
+    public func passcodeCanceled() {
+        self.delegate.latchCanceled()
     }
     
     // MARK: LTTouchID Delegate Methods

@@ -15,7 +15,7 @@ public enum LTPasscodeStatusBar {
 }
 
 public struct LTPasscodeTheme {
-    var logo: UIImage = UIImage(named: "Latch")!
+    var logo: UIImage = UIImage(named: "Latch", inBundle: FrameworkBundle, compatibleWithTraitCollection: nil)!
     var logoTint: UIColor! = UIColor(red:0.12, green:0.67, blue:0.95, alpha:1)
     var logoErrorTint: UIColor = UIColor.redColor()
    
@@ -45,6 +45,7 @@ protocol LTPasscodeDelegate {
     func passcodeGranted()
     func passcodeSet()
     func passcodeFailed(reason: LatchError)
+    func passcodeCanceled()
 }
 
 private let FrameworkBundle = NSBundle(path: NSBundle.mainBundle().privateFrameworksPath!.stringByAppendingPathComponent("Latch.framework"))
@@ -311,6 +312,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     internal func keyPressed(number: Int) {
         if number < 0 && self.passcode.count == 0 && self.state == .Set {
             self.dismiss()
+            self.delegate.passcodeCanceled()
             return
         }
         
