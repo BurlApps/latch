@@ -9,19 +9,20 @@
 import Foundation
 import UIKit
 
-protocol LatchDelegate {
+public protocol LatchDelegate {
     func latchGranted()
     func latchSet()
     func latchDenied(reason: LatchError)
+    func latchCanceled()
 }
 
-enum LatchError: Printable {
+public enum LatchError: Printable {
     case TouchIDAuthFailed, TouchIDSystemCancel, TouchIDPasscodeNotSet,
     TouchIDNotAvailable, TouchIDNotEnrolled, NoAuthMethodsAvailable,
     TouchIDNotAvailablePasscodeDisabled, TouchIDCancelledPasscodeDisabled,
     PasscodeNotSet
   
-    var description: String {
+    public var description: String {
       switch self {
       case .TouchIDAuthFailed:
         return "Touch ID authorization failed."
@@ -45,16 +46,19 @@ enum LatchError: Printable {
     }
 }
 
-class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
+public class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     
     // MARK: Instance Variables
-    var delegate: LatchDelegate!
-    var parentController: UIViewController!
-    var touchReason: String = "We need to make sure it's you!"
-    var passcodeInstruction: String = "Enter Passcode"
-    var enableTouch: Bool = true
-    var enablePasscode: Bool = true
-    var passcodeTheme: LTPasscodeTheme = LTPasscodeTheme()
+    public var delegate: LatchDelegate!
+    public var parentController: UIViewController!
+    public var touchReason: String = "We need to make sure it's you!"
+    public var passcodeInstruction: String = NSLocalizedString("Enter Passcode", bundle: FrameworkBundle!, comment: "")
+  public var changePasscodeInstruction: String = NSLocalizedString("Enter your old passcode", bundle: FrameworkBundle!, comment: "")
+    public var enableTouch: Bool = true
+    public var enablePasscode: Bool = true
+  public var enablePasscodeChange: Bool = false
+    public var passcodeTheme: LTPasscodeTheme = LTPasscodeTheme()
+  
     
     // MARK: Private Instance Variables
     private var touchID: LTTouchID!
@@ -62,20 +66,22 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     private var storage: LTStorage! = LTStorage()
     
     // MARK: Initializer
-    init() {
-        
-        // Initialize TouchID Module
-        self.touchID = LTTouchID(reason: self.touchReason)
-        self.touchID.delegate = self
-        
-        // Initialize Passcode Module
-        self.passcode = LTPasscode(instructions: self.passcodeInstruction)
-        self.passcode.delegate = self
-        self.passcode.theme = self.passcodeTheme
+  public init(defaultPasscode: String? = nil) {
+    // Initialize TouchID Module
+    self.touchID = LTTouchID(reason: self.touchReason)
+    self.touchID.delegate = self
+    
+    // Initialize Passcode Module
+    self.passcode = LTPasscode(instructions: self.passcodeInstruction, changeInstructions: self.changePasscodeInstruction)
+    if let passcodeString = defaultPasscode {
+      self.passcode.setDefaultPasscode(passcodeString)
     }
+    self.passcode.delegate = self
+    self.passcode.theme = self.passcodeTheme
+  }
     
     // MARK: Instance Methods
-    func authorize() {
+    public func authorize() {
         if self.enableTouch == false && self.enablePasscode == false {
             self.delegate!.latchDenied(LatchError.NoAuthMethodsAvailable)
             return
@@ -88,33 +94,38 @@ class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
         if self.enablePasscode {
             self.passcode.parentController = self.parentController
             self.passcode.theme = self.passcodeTheme
+          self.passcode.enablePasscodeChange = self.enablePasscodeChange
             self.passcode.updateStyle()
             self.passcode.authorize()
         }
     }
     
-    func updatePasscode() {
+    public func updatePasscode() {
         self.passcode.parentController = self.parentController
         self.passcode.theme = self.passcodeTheme
         self.passcode.updateStyle()
         self.passcode.setPasscode()
     }
     
-    func removePasscode() {
+    public func removePasscode() {
         self.storage.removePasscode()
     }
     
     // MARK: LTPasscode Delegate Methods
-    internal func passcodeGranted() {
+    public func passcodeGranted() {
         self.delegate!.latchGranted()
     }
     
-    internal func passcodeFailed(reason: LatchError) {
+    public func passcodeFailed(reason: LatchError) {
         self.delegate!.latchDenied(reason)
     }
     
-    internal func passcodeSet() {
+    public func passcodeSet() {
         self.delegate.latchSet()
+    }
+  
+    public func passcodeCanceled() {
+        self.delegate.latchCanceled()
     }
     
     // MARK: LTTouchID Delegate Methods

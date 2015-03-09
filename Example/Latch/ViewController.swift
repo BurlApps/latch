@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Latch
 
 class ViewController: UIViewController, LatchDelegate {
     
@@ -17,8 +18,9 @@ class ViewController: UIViewController, LatchDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.latch = Latch()
+        self.latch = Latch(defaultPasscode: "0000")
         self.latch.delegate = self
+      self.latch.enablePasscodeChange = true
         self.latch.parentController = self
     }
     
@@ -50,6 +52,9 @@ class ViewController: UIViewController, LatchDelegate {
     }
     
     // MARK: LatchDelegate Methods
+    func latchCanceled() {
+        println("canceled")
+    }
     func latchGranted() {
         println("access granged")
     }
