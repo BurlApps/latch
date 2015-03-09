@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "GNU", :file => "LICENSE" }
   s.author             = { "Brian Vallelunga" => "vallelungabrian@gmail.com" }
   s.platform     = :ios, "8.0"
-  s.source       = { :git => "https://github.com/retsohuang/Latch.git", :tag => s.version }
+  s.source       = { :git => "https://github.com/bvallelunga/Latch.git", :tag => s.version }
   s.source_files  = "Framework/*.swift"
   s.resources = "Framework/*.png", "Framework/*.{xib}"
   s.requires_arc = true
