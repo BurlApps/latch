@@ -24,6 +24,7 @@
 		F22A070E1A70D57F00484CFA /* LTPasscodeKey.swift in Headers */ = {isa = PBXBuildFile; fileRef = F22A06DD1A70D18C00484CFA /* LTPasscodeKey.swift */; };
 		F22A070F1A70D57F00484CFA /* LTStorage.swift in Headers */ = {isa = PBXBuildFile; fileRef = F22A06DE1A70D18C00484CFA /* LTStorage.swift */; };
 		F22A07101A70D57F00484CFA /* LTTouchID.swift in Headers */ = {isa = PBXBuildFile; fileRef = F22A06DF1A70D18C00484CFA /* LTTouchID.swift */; };
+		F28456031AAD7347004B2639 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F28456051AAD7347004B2639 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		F22A06DD1A70D18C00484CFA /* LTPasscodeKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTPasscodeKey.swift; path = ../../Framework/LTPasscodeKey.swift; sourceTree = "<group>"; };
 		F22A06DE1A70D18C00484CFA /* LTStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTStorage.swift; path = ../../Framework/LTStorage.swift; sourceTree = "<group>"; };
 		F22A06DF1A70D18C00484CFA /* LTTouchID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LTTouchID.swift; path = ../../Framework/LTTouchID.swift; sourceTree = "<group>"; };
+		F28456041AAD7347004B2639 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F28456061AAD735E004B2639 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,7 @@
 				F22A06DF1A70D18C00484CFA /* LTTouchID.swift */,
 				F22A06B81A70D0E900484CFA /* Latch.h */,
 				F22A06B61A70D0E900484CFA /* Supporting Files */,
+				F28456051AAD7347004B2639 /* Localizable.strings */,
 			);
 			path = Latch;
 			sourceTree = "<group>";
@@ -211,6 +215,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				"zh-Hant",
 			);
 			mainGroup = F22A06A91A70D0E900484CFA;
 			productRefGroup = F22A06B41A70D0E900484CFA /* Products */;
@@ -229,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F22A06E01A70D18C00484CFA /* Latch.png in Resources */,
+				F28456031AAD7347004B2639 /* Localizable.strings in Resources */,
 				F22A06E31A70D18C00484CFA /* LTPasscode.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +279,18 @@
 			targetProxy = F22A06C01A70D0E900484CFA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F28456051AAD7347004B2639 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F28456041AAD7347004B2639 /* en */,
+				F28456061AAD735E004B2639 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		F22A06C71A70D0E900484CFA /* Debug */ = {

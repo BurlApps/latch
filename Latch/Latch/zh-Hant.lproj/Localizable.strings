@@ -1,0 +1,16 @@
+/* 
+  Localizable.strings
+  Latch
+
+  Created by HuangRetso on 3/9/15.
+  Copyright (c) 2015 Brian Vallelunga. All rights reserved.
+*/
+
+"Change Passcode" = "變更";
+"Enter your old passcode" = "輸入舊密碼";
+"Enter your new passcode" = "輸入新密碼";
+"Re-enter your new passcode" = "重新輸入新密碼";
+"Enter Passcode" = "輸入解鎖密碼";
+"Confirm Passcode" = "重新輸入密碼";
+"Cancel" = "取消";
+"Delete" = "刪除";
