@@ -124,6 +124,11 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     }
     
     // MARK: Instance Methods
+  func setDefaultPasscode(passcodeString: String) {
+    if self.storage.readPasscode() == nil {
+      self.storage.savePasscode(passcodeString)
+    }
+  }
     func authorize() {
         if self.storage.readPasscode() != nil {
             self.state = .Check

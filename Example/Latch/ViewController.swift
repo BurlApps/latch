@@ -18,7 +18,7 @@ class ViewController: UIViewController, LatchDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.latch = Latch()
+        self.latch = Latch(defaultPasscode: "0000")
         self.latch.delegate = self
         self.latch.parentController = self
     }

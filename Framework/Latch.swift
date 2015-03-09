@@ -63,17 +63,19 @@ public class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     private var storage: LTStorage! = LTStorage()
     
     // MARK: Initializer
-    public init() {
-        
-        // Initialize TouchID Module
-        self.touchID = LTTouchID(reason: self.touchReason)
-        self.touchID.delegate = self
-        
-        // Initialize Passcode Module
-        self.passcode = LTPasscode(instructions: self.passcodeInstruction)
-        self.passcode.delegate = self
-        self.passcode.theme = self.passcodeTheme
+  public init(defaultPasscode: String? = nil) {
+    // Initialize TouchID Module
+    self.touchID = LTTouchID(reason: self.touchReason)
+    self.touchID.delegate = self
+    
+    // Initialize Passcode Module
+    self.passcode = LTPasscode(instructions: self.passcodeInstruction)
+    if let passcodeString = defaultPasscode {
+      self.passcode.setDefaultPasscode(passcodeString)
     }
+    self.passcode.delegate = self
+    self.passcode.theme = self.passcodeTheme
+  }
     
     // MARK: Instance Methods
     public func authorize() {
