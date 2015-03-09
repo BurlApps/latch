@@ -24,7 +24,7 @@ class LTPasscodeKey: UIButton {
     var numberLabel: UILabel!
     
     // MARK: Private Instance Variable
-    private var number: Int!
+    var number: Int!
     private var row: CGFloat!
     private var column: CGFloat!
     

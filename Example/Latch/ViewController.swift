@@ -20,6 +20,7 @@ class ViewController: UIViewController, LatchDelegate {
         
         self.latch = Latch(defaultPasscode: "0000")
         self.latch.delegate = self
+      self.latch.enablePasscodeChange = true
         self.latch.parentController = self
     }
     

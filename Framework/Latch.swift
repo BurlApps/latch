@@ -52,10 +52,13 @@ public class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     public var delegate: LatchDelegate!
     public var parentController: UIViewController!
     public var touchReason: String = "We need to make sure it's you!"
-    public var passcodeInstruction: String = "Enter Passcode"
+    public var passcodeInstruction: String = NSLocalizedString("Enter Passcode", bundle: FrameworkBundle!, comment: "")
+  public var changePasscodeInstruction: String = NSLocalizedString("Enter your old passcode", bundle: FrameworkBundle!, comment: "")
     public var enableTouch: Bool = true
     public var enablePasscode: Bool = true
+  public var enablePasscodeChange: Bool = false
     public var passcodeTheme: LTPasscodeTheme = LTPasscodeTheme()
+  
     
     // MARK: Private Instance Variables
     private var touchID: LTTouchID!
@@ -69,7 +72,7 @@ public class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     self.touchID.delegate = self
     
     // Initialize Passcode Module
-    self.passcode = LTPasscode(instructions: self.passcodeInstruction)
+    self.passcode = LTPasscode(instructions: self.passcodeInstruction, changeInstructions: self.changePasscodeInstruction)
     if let passcodeString = defaultPasscode {
       self.passcode.setDefaultPasscode(passcodeString)
     }
@@ -91,6 +94,7 @@ public class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
         if self.enablePasscode {
             self.passcode.parentController = self.parentController
             self.passcode.theme = self.passcodeTheme
+          self.passcode.enablePasscodeChange = self.enablePasscodeChange
             self.passcode.updateStyle()
             self.passcode.authorize()
         }
