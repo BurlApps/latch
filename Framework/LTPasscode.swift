@@ -212,10 +212,17 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
               key.numberLabel.text = NSLocalizedString("Delete", bundle: LTBundle, comment: "")
             }
           } else if key.number == -2 {
-            if self.state == .Check && self.enablePasscodeChange && self.storage.readPasscode() != nil {
-              key.numberLabel.text = NSLocalizedString("Change Passcode", bundle: LTBundle, comment: "")
-            } else {
+            switch self.state {
+            case .Check:
+              if self.storage.readPasscode() != nil {
+                key.numberLabel.text = NSLocalizedString("Change Passcode", bundle: LTBundle, comment: "")
+              } else {
+                key.numberLabel.text = NSLocalizedString("", bundle: LTBundle, comment: "")
+              }
+            case .UpdateCheck:
               key.numberLabel.text = NSLocalizedString("Cancel", bundle: LTBundle, comment: "")
+            default:
+              key.numberLabel.text = NSLocalizedString("", bundle: LTBundle, comment: "")
             }
           }
             
