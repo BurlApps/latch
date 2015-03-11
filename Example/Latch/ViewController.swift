@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import Latch
 
 class ViewController: UIViewController, LatchDelegate {
     
     // MARK: Private Instance Variables
     var latch: Latch!
+  private var touchIDAPIAvailable: Bool {
+    return UIDevice.currentDevice().systemVersion.toInt() > 7
+  }
     
     // MARK: UIViewController Overrides
     override func viewDidLoad() {
@@ -26,7 +28,7 @@ class ViewController: UIViewController, LatchDelegate {
     
     // MARK: IBAction
     @IBAction func authorize(sender: UIButton) {
-        self.latch.enableTouch = true
+        self.latch.enableTouch = self.touchIDAPIAvailable
         self.latch.enablePasscode = true
         self.latch.authorize()
     }
@@ -38,9 +40,13 @@ class ViewController: UIViewController, LatchDelegate {
     }
     
     @IBAction func authorizeTouch(sender: UIButton) {
+      if !touchIDAPIAvailable {
+        UIAlertView(title: "Error", message: "Touch ID only available iOS 8 and later.", delegate: nil, cancelButtonTitle: "OK").show()
+      } else {
         self.latch.enableTouch = true
         self.latch.enablePasscode = false
         self.latch.authorize()
+      }
     }
     
     @IBAction func changePasscode(sender: UIButton) {

@@ -12,8 +12,14 @@
 		D3936F3C19FC235200D903CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3936F3B19FC235200D903CB /* Images.xcassets */; };
 		D3936F4B19FC235200D903CB /* LatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F4A19FC235200D903CB /* LatchTests.swift */; };
 		D3936F6019FC32DD00D903CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3936F5F19FC32DD00D903CB /* Main.storyboard */; };
-		F22A07081A70D4E000484CFA /* Latch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F22A07051A70D4D900484CFA /* Latch.framework */; };
-		F22A07091A70D4E000484CFA /* Latch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F22A07051A70D4D900484CFA /* Latch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F2BD2E6B1AB01AE900035417 /* Latch.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BD2E631AB01AE900035417 /* Latch.png */; };
+		F2BD2E6C1AB01AE900035417 /* Latch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD2E641AB01AE900035417 /* Latch.swift */; };
+		F2BD2E6D1AB01AE900035417 /* LTPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD2E651AB01AE900035417 /* LTPasscode.swift */; };
+		F2BD2E6E1AB01AE900035417 /* LTPasscode.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BD2E661AB01AE900035417 /* LTPasscode.xib */; };
+		F2BD2E6F1AB01AE900035417 /* LTPasscodeBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD2E671AB01AE900035417 /* LTPasscodeBubble.swift */; };
+		F2BD2E701AB01AE900035417 /* LTPasscodeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD2E681AB01AE900035417 /* LTPasscodeKey.swift */; };
+		F2BD2E711AB01AE900035417 /* LTStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD2E691AB01AE900035417 /* LTStorage.swift */; };
+		F2BD2E721AB01AE900035417 /* LTTouchID.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD2E6A1AB01AE900035417 /* LTTouchID.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,45 +30,10 @@
 			remoteGlobalIDString = D3936F2E19FC235200D903CB;
 			remoteInfo = Latch;
 		};
-		F22A07041A70D4D900484CFA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F22A06FF1A70D4D900484CFA /* Latch.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F22A06B31A70D0E900484CFA;
-			remoteInfo = Latch;
-		};
-		F22A07061A70D4D900484CFA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F22A06FF1A70D4D900484CFA /* Latch.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = F22A06BE1A70D0E900484CFA;
-			remoteInfo = LatchTests;
-		};
-		F22A070A1A70D4E000484CFA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F22A06FF1A70D4D900484CFA /* Latch.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = F22A06B21A70D0E900484CFA;
-			remoteInfo = Latch;
-		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		F22A06FE1A70D4AA00484CFA /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				F22A07091A70D4E000484CFA /* Latch.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		D3936F2F19FC235200D903CB /* iOS Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3936F2F19FC235200D903CB /* Latch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Latch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3936F3319FC235200D903CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3936F3419FC235200D903CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3936F3619FC235200D903CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -71,7 +42,14 @@
 		D3936F4919FC235200D903CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3936F4A19FC235200D903CB /* LatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatchTests.swift; sourceTree = "<group>"; };
 		D3936F5F19FC32DD00D903CB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Latch/Main.storyboard; sourceTree = "<group>"; };
-		F22A06FF1A70D4D900484CFA /* Latch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Latch.xcodeproj; path = ../Latch/Latch.xcodeproj; sourceTree = "<group>"; };
+		F2BD2E631AB01AE900035417 /* Latch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Latch.png; sourceTree = "<group>"; };
+		F2BD2E641AB01AE900035417 /* Latch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Latch.swift; sourceTree = "<group>"; };
+		F2BD2E651AB01AE900035417 /* LTPasscode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPasscode.swift; sourceTree = "<group>"; };
+		F2BD2E661AB01AE900035417 /* LTPasscode.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTPasscode.xib; sourceTree = "<group>"; };
+		F2BD2E671AB01AE900035417 /* LTPasscodeBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPasscodeBubble.swift; sourceTree = "<group>"; };
+		F2BD2E681AB01AE900035417 /* LTPasscodeKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPasscodeKey.swift; sourceTree = "<group>"; };
+		F2BD2E691AB01AE900035417 /* LTStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTStorage.swift; sourceTree = "<group>"; };
+		F2BD2E6A1AB01AE900035417 /* LTTouchID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTTouchID.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +57,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F22A07081A70D4E000484CFA /* Latch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,14 +76,13 @@
 				D3936F3119FC235200D903CB /* Latch */,
 				D3936F4719FC235200D903CB /* LatchTests */,
 				D3936F3019FC235200D903CB /* Products */,
-				F22A06FF1A70D4D900484CFA /* Latch.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
 		D3936F3019FC235200D903CB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D3936F2F19FC235200D903CB /* iOS Example.app */,
+				D3936F2F19FC235200D903CB /* Latch.app */,
 				D3936F4419FC235200D903CB /* iOS ExampleTests.xctest */,
 			);
 			name = Products;
@@ -115,6 +91,7 @@
 		D3936F3119FC235200D903CB /* Latch */ = {
 			isa = PBXGroup;
 			children = (
+				F2BD2E621AB01AE900035417 /* Framework */,
 				D3936F3419FC235200D903CB /* AppDelegate.swift */,
 				D3936F3619FC235200D903CB /* ViewController.swift */,
 				D3936F5F19FC32DD00D903CB /* Main.storyboard */,
@@ -149,35 +126,40 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F22A07001A70D4D900484CFA /* Products */ = {
+		F2BD2E621AB01AE900035417 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				F22A07051A70D4D900484CFA /* Latch.framework */,
-				F22A07071A70D4D900484CFA /* LatchTests.xctest */,
+				F2BD2E631AB01AE900035417 /* Latch.png */,
+				F2BD2E641AB01AE900035417 /* Latch.swift */,
+				F2BD2E651AB01AE900035417 /* LTPasscode.swift */,
+				F2BD2E661AB01AE900035417 /* LTPasscode.xib */,
+				F2BD2E671AB01AE900035417 /* LTPasscodeBubble.swift */,
+				F2BD2E681AB01AE900035417 /* LTPasscodeKey.swift */,
+				F2BD2E691AB01AE900035417 /* LTStorage.swift */,
+				F2BD2E6A1AB01AE900035417 /* LTTouchID.swift */,
 			);
-			name = Products;
+			name = Framework;
+			path = ../../Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D3936F2E19FC235200D903CB /* iOS Example */ = {
+		D3936F2E19FC235200D903CB /* Latch_iOS7 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D3936F4E19FC235200D903CB /* Build configuration list for PBXNativeTarget "iOS Example" */;
+			buildConfigurationList = D3936F4E19FC235200D903CB /* Build configuration list for PBXNativeTarget "Latch_iOS7" */;
 			buildPhases = (
 				D3936F2B19FC235200D903CB /* Sources */,
 				D3936F2C19FC235200D903CB /* Frameworks */,
 				D3936F2D19FC235200D903CB /* Resources */,
-				F22A06FE1A70D4AA00484CFA /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F22A070B1A70D4E000484CFA /* PBXTargetDependency */,
 			);
-			name = "iOS Example";
+			name = Latch_iOS7;
 			productName = Latch;
-			productReference = D3936F2F19FC235200D903CB /* iOS Example.app */;
+			productReference = D3936F2F19FC235200D903CB /* Latch.app */;
 			productType = "com.apple.product-type.application";
 		};
 		D3936F4319FC235200D903CB /* iOS ExampleTests */ = {
@@ -228,42 +210,21 @@
 			mainGroup = D3936F2619FC235200D903CB;
 			productRefGroup = D3936F3019FC235200D903CB /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = F22A07001A70D4D900484CFA /* Products */;
-					ProjectRef = F22A06FF1A70D4D900484CFA /* Latch.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
-				D3936F2E19FC235200D903CB /* iOS Example */,
+				D3936F2E19FC235200D903CB /* Latch_iOS7 */,
 				D3936F4319FC235200D903CB /* iOS ExampleTests */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		F22A07051A70D4D900484CFA /* Latch.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = Latch.framework;
-			remoteRef = F22A07041A70D4D900484CFA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		F22A07071A70D4D900484CFA /* LatchTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = LatchTests.xctest;
-			remoteRef = F22A07061A70D4D900484CFA /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		D3936F2D19FC235200D903CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2BD2E6B1AB01AE900035417 /* Latch.png in Resources */,
+				F2BD2E6E1AB01AE900035417 /* LTPasscode.xib in Resources */,
 				D3936F3C19FC235200D903CB /* Images.xcassets in Resources */,
 				D3936F6019FC32DD00D903CB /* Main.storyboard in Resources */,
 			);
@@ -284,7 +245,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D3936F3719FC235200D903CB /* ViewController.swift in Sources */,
+				F2BD2E6F1AB01AE900035417 /* LTPasscodeBubble.swift in Sources */,
+				F2BD2E721AB01AE900035417 /* LTTouchID.swift in Sources */,
+				F2BD2E6D1AB01AE900035417 /* LTPasscode.swift in Sources */,
 				D3936F3519FC235200D903CB /* AppDelegate.swift in Sources */,
+				F2BD2E6C1AB01AE900035417 /* Latch.swift in Sources */,
+				F2BD2E701AB01AE900035417 /* LTPasscodeKey.swift in Sources */,
+				F2BD2E711AB01AE900035417 /* LTStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,13 +268,8 @@
 /* Begin PBXTargetDependency section */
 		D3936F4619FC235200D903CB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D3936F2E19FC235200D903CB /* iOS Example */;
+			target = D3936F2E19FC235200D903CB /* Latch_iOS7 */;
 			targetProxy = D3936F4519FC235200D903CB /* PBXContainerItemProxy */;
-		};
-		F22A070B1A70D4E000484CFA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Latch;
-			targetProxy = F22A070A1A70D4E000484CFA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -397,11 +359,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Latch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Latch;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -413,11 +374,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Latch/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Latch;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -473,7 +433,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D3936F4E19FC235200D903CB /* Build configuration list for PBXNativeTarget "iOS Example" */ = {
+		D3936F4E19FC235200D903CB /* Build configuration list for PBXNativeTarget "Latch_iOS7" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D3936F4F19FC235200D903CB /* Debug */,
