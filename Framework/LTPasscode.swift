@@ -15,7 +15,7 @@ public enum LTPasscodeStatusBar {
 }
 
 public struct LTPasscodeTheme {
-    var logo: UIImage = UIImage(named: "Latch", inBundle: FrameworkBundle, compatibleWithTraitCollection: nil)!
+    var logo: UIImage = UIImage(contentsOfFile: LTBundle.pathForResource("Latch", ofType: "png")!)!
     var logoTint: UIColor! = UIColor(red:0.12, green:0.67, blue:0.95, alpha:1)
     var logoErrorTint: UIColor = UIColor.redColor()
    
@@ -48,7 +48,11 @@ protocol LTPasscodeDelegate {
     func passcodeCanceled()
 }
 
-let FrameworkBundle = NSBundle(path: NSBundle.mainBundle().privateFrameworksPath!.stringByAppendingPathComponent("Latch.framework"))
+#if COCOAPODS
+let LTBundle = NSBundle(path: NSBundle.mainBundle().privateFrameworksPath!.stringByAppendingPathComponent("Latch.framework"))!
+#else
+let LTBundle = NSBundle.mainBundle()
+#endif
 
 class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     
@@ -92,6 +96,8 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     ]
     
     // MARK: IBOutlets
+  
+  @IBOutlet weak private var logoImageViewHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var instructionsLabel: UILabel!
     @IBOutlet weak var keysView: UIView!
@@ -99,17 +105,34 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     
     // MARK: Initializer
   convenience init(instructions: String, changeInstructions: String) {
-    self.init(nibName: "LTPasscode", bundle: FrameworkBundle)
+    self.init(nibName: "LTPasscode", bundle: LTBundle)
     self.instructions = instructions
     self.changeInstructions = changeInstructions
     self.updateStyle()
+    if UIScreen.mainScreen().bounds.size.height < 568 {
+      self.logoImageViewHeightLayoutConstraint.constant = 0
+    } else {
+      self.logoImageViewHeightLayoutConstraint.constant = 50
+    }
   }
     
     // MARK: UIViewController Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+  
+  override func shouldAutorotate() -> Bool {
+    return UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad
+  }
+  
+  override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+    if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
+      return UIApplication.sharedApplication().statusBarOrientation
+    } else {
+      return UIInterfaceOrientation.Portrait
+    }
+  }
+  
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -203,15 +226,22 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
           
           if key.number == -1 {
             if self.state == .Set {
-              key.numberLabel.text = NSLocalizedString("Cancel", bundle: FrameworkBundle!, comment: "")
+              key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch",  bundle: LTBundle, comment: "")
             } else {
-              key.numberLabel.text = NSLocalizedString("Delete", bundle: FrameworkBundle!, comment: "")
+              key.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: LTBundle, comment: "")
             }
           } else if key.number == -2 {
-            if self.state == .Check && self.enablePasscodeChange && self.storage.readPasscode() != nil {
-              key.numberLabel.text = NSLocalizedString("Change Passcode", bundle: FrameworkBundle!, comment: "")
-            } else {
-              key.numberLabel.text = NSLocalizedString("Cancel", bundle: FrameworkBundle!, comment: "")
+            switch self.state {
+            case .Check:
+              if self.storage.readPasscode() != nil {
+                key.numberLabel.text = NSLocalizedString("Change Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
+              } else {
+                key.numberLabel.text = ""
+              }
+            case .UpdateCheck:
+              key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: LTBundle, comment: "")
+            default:
+              key.numberLabel.text = ""
             }
           }
             
@@ -289,7 +319,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
               
               }, completion: { finished in
                 
-                self.instructionsLabel.text = NSLocalizedString("Enter your new passcode", bundle: FrameworkBundle!, comment: "")
+                self.instructionsLabel.text = NSLocalizedString("Enter your new passcode", tableName: "Latch", bundle: LTBundle, comment: "")
                 self.instructionsLabel.frame.origin.x = screenWidth
                 self.bubblesView.frame.origin.x = screenWidth
                 for bubble in self.bubbles {
@@ -334,7 +364,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             
             }, completion: { finished in
               
-              self.instructionsLabel.text = NSLocalizedString("Confirm Passcode", bundle: FrameworkBundle!, comment: "")
+              self.instructionsLabel.text = NSLocalizedString("Confirm Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
               self.instructionsLabel.frame.origin.x = screenWidth
               self.bubblesView.frame.origin.x = screenWidth
               for bubble in self.bubbles {
@@ -406,9 +436,9 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         
         if self.state == .Set {
             if self.passcode.count == 0 {
-                self.keys.last?.numberLabel.text = NSLocalizedString("Cancel", bundle: FrameworkBundle!, comment: "")
+                self.keys.last?.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: LTBundle, comment: "")
             } else {
-                self.keys.last?.numberLabel.text = NSLocalizedString("Delete", bundle: FrameworkBundle!, comment: "")
+                self.keys.last?.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: LTBundle, comment: "")
             }
         }
     }

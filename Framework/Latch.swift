@@ -52,8 +52,8 @@ public class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     public var delegate: LatchDelegate!
     public var parentController: UIViewController!
     public var touchReason: String = "We need to make sure it's you!"
-    public var passcodeInstruction: String = NSLocalizedString("Enter Passcode", bundle: FrameworkBundle!, comment: "")
-  public var changePasscodeInstruction: String = NSLocalizedString("Enter your old passcode", bundle: FrameworkBundle!, comment: "")
+    public var passcodeInstruction: String = NSLocalizedString("Enter Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
+  public var changePasscodeInstruction: String = NSLocalizedString("Enter your old passcode", tableName: "Latch", bundle: LTBundle, comment: "")
     public var enableTouch: Bool = true
     public var enablePasscode: Bool = true
   public var enablePasscodeChange: Bool = false
