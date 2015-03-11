@@ -113,7 +113,19 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+  
+  override func shouldAutorotate() -> Bool {
+    return UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad
+  }
+  
+  override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+    if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
+      return UIApplication.sharedApplication().statusBarOrientation
+    } else {
+      return UIInterfaceOrientation.Portrait
+    }
+  }
+  
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
