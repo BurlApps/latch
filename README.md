@@ -15,25 +15,37 @@ Latch
 
 [![Latch](https://github.com/bvallelunga/latch/raw/master/screenshot.png)](https://www.youtube.com/watch?v=HjNdyExQf8A)
 
-Install
-========
+Installation
+------------
 
-1) Copy `Framework` folder into your project
+### For iOS 7
 
-2) Change `Latch.LTPasscode.xib` to `<module>.LTPasscode.xib`
+Copy `Framework` folder into your project
+
+### CocoaPods (iOS 8 and later)
+
+Add the following lines to your Podfile
+```
+pod 'Latch', :git => "https://github.com/SooJuicy/Latch.git"
+```
 
 Configure ([Example](https://github.com/JuicyApp/Latch/blob/master/Example/Latch/ViewController.swift))
-===========
+------------
 
 1) Create Latch in View Controller 
 ``` swift
 self.latch = Latch()
+self.latch = Latch(defaultPasscode: "0000") // Set default as given string
 self.latch.delegate = self // Make sure to add LatchDelegate to Class
 self.latch.parentController = self
 ```
 
 2) Add Delegate Methods
 ``` swift
+func latchCanceled() {
+    println("canceled")
+}
+
 func latchGranted() {
     println("access granged")
 }
@@ -51,6 +63,7 @@ func latchDenied(reason: LatchError) {
 ``` swift
 self.latch.touchReason = "We need to make sure it's you!"
 self.latch.passcodeInstruction = "Enter Passcode"
+self.latch.changePasscodeInstruction = "Enter your old passcode"
 ```
 
 4) Customize Theme (Optional)
@@ -60,8 +73,9 @@ self.latch.passcodeTheme.logoTint = nil
 self.latch.passcodeTheme.instructions = UIColor(red:0.96, green:0.33, blue:0.24, alpha:1)
 
 //Passcode theme options
+
 struct LTPasscodeTheme {
-    var logo: UIImage = UIImage(named: "Latch")!
+    var logo: UIImage = UIImage(contentsOfFile: LTBundle.pathForResource("Latch", ofType: "png")!)!
     var logoTint: UIColor! = UIColor(red:0.12, green:0.67, blue:0.95, alpha:1)
     var logoErrorTint: UIColor = UIColor.redColor()
    
@@ -92,10 +106,11 @@ struct LTPasscodeTheme {
 ``` swift
 self.latch.enableTouch = true // True by default 
 self.latch.enablePasscode = true // True by default 
+self.latch.enablePasscodeChange = true // False by default
 ```
 
 Usage
-========
+------------
 
 **Set Passcode**: `self.latch.updatePasscode()`
 
