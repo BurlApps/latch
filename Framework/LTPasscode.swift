@@ -96,6 +96,8 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     ]
     
     // MARK: IBOutlets
+  
+  @IBOutlet weak private var logoImageViewHeightLayoutConstraint: NSLayoutConstraint!
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var instructionsLabel: UILabel!
     @IBOutlet weak var keysView: UIView!
@@ -107,6 +109,11 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     self.instructions = instructions
     self.changeInstructions = changeInstructions
     self.updateStyle()
+    if UIScreen.mainScreen().bounds.size.height < 568 {
+      self.logoImageViewHeightLayoutConstraint.constant = 0
+    } else {
+      self.logoImageViewHeightLayoutConstraint.constant = 50
+    }
   }
     
     // MARK: UIViewController Overrides
