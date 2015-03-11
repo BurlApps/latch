@@ -226,22 +226,22 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
           
           if key.number == -1 {
             if self.state == .Set {
-              key.numberLabel.text = NSLocalizedString("Cancel", bundle: LTBundle, comment: "")
+              key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch",  bundle: LTBundle, comment: "")
             } else {
-              key.numberLabel.text = NSLocalizedString("Delete", bundle: LTBundle, comment: "")
+              key.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: LTBundle, comment: "")
             }
           } else if key.number == -2 {
             switch self.state {
             case .Check:
               if self.storage.readPasscode() != nil {
-                key.numberLabel.text = NSLocalizedString("Change Passcode", bundle: LTBundle, comment: "")
+                key.numberLabel.text = NSLocalizedString("Change Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
               } else {
-                key.numberLabel.text = NSLocalizedString("", bundle: LTBundle, comment: "")
+                key.numberLabel.text = ""
               }
             case .UpdateCheck:
-              key.numberLabel.text = NSLocalizedString("Cancel", bundle: LTBundle, comment: "")
+              key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: LTBundle, comment: "")
             default:
-              key.numberLabel.text = NSLocalizedString("", bundle: LTBundle, comment: "")
+              key.numberLabel.text = ""
             }
           }
             
@@ -319,7 +319,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
               
               }, completion: { finished in
                 
-                self.instructionsLabel.text = NSLocalizedString("Enter your new passcode", bundle: LTBundle, comment: "")
+                self.instructionsLabel.text = NSLocalizedString("Enter your new passcode", tableName: "Latch", bundle: LTBundle, comment: "")
                 self.instructionsLabel.frame.origin.x = screenWidth
                 self.bubblesView.frame.origin.x = screenWidth
                 for bubble in self.bubbles {
@@ -364,7 +364,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             
             }, completion: { finished in
               
-              self.instructionsLabel.text = NSLocalizedString("Confirm Passcode", bundle: LTBundle, comment: "")
+              self.instructionsLabel.text = NSLocalizedString("Confirm Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
               self.instructionsLabel.frame.origin.x = screenWidth
               self.bubblesView.frame.origin.x = screenWidth
               for bubble in self.bubbles {
@@ -436,9 +436,9 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         
         if self.state == .Set {
             if self.passcode.count == 0 {
-                self.keys.last?.numberLabel.text = NSLocalizedString("Cancel", bundle: LTBundle, comment: "")
+                self.keys.last?.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: LTBundle, comment: "")
             } else {
-                self.keys.last?.numberLabel.text = NSLocalizedString("Delete", bundle: LTBundle, comment: "")
+                self.keys.last?.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: LTBundle, comment: "")
             }
         }
     }

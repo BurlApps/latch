@@ -20,6 +20,7 @@
 		F2BD2E701AB01AE900035417 /* LTPasscodeKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD2E681AB01AE900035417 /* LTPasscodeKey.swift */; };
 		F2BD2E711AB01AE900035417 /* LTStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD2E691AB01AE900035417 /* LTStorage.swift */; };
 		F2BD2E721AB01AE900035417 /* LTTouchID.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD2E6A1AB01AE900035417 /* LTTouchID.swift */; };
+		F2BD2E751AB0352800035417 /* Latch.strings in Resources */ = {isa = PBXBuildFile; fileRef = F2BD2E771AB0352800035417 /* Latch.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,9 @@
 		F2BD2E681AB01AE900035417 /* LTPasscodeKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTPasscodeKey.swift; sourceTree = "<group>"; };
 		F2BD2E691AB01AE900035417 /* LTStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTStorage.swift; sourceTree = "<group>"; };
 		F2BD2E6A1AB01AE900035417 /* LTTouchID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTTouchID.swift; sourceTree = "<group>"; };
+		F2BD2E761AB0352800035417 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Latch.strings; sourceTree = "<group>"; };
+		F2BD2E781AB0352F00035417 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Latch.strings; sourceTree = "<group>"; };
+		F2BD2E791AB0354E00035417 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Latch.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				F2BD2E631AB01AE900035417 /* Latch.png */,
+				F2BD2E771AB0352800035417 /* Latch.strings */,
 				F2BD2E641AB01AE900035417 /* Latch.swift */,
 				F2BD2E651AB01AE900035417 /* LTPasscode.swift */,
 				F2BD2E661AB01AE900035417 /* LTPasscode.xib */,
@@ -206,6 +211,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = D3936F2619FC235200D903CB;
 			productRefGroup = D3936F3019FC235200D903CB /* Products */;
@@ -226,6 +232,7 @@
 				F2BD2E6B1AB01AE900035417 /* Latch.png in Resources */,
 				F2BD2E6E1AB01AE900035417 /* LTPasscode.xib in Resources */,
 				D3936F3C19FC235200D903CB /* Images.xcassets in Resources */,
+				F2BD2E751AB0352800035417 /* Latch.strings in Resources */,
 				D3936F6019FC32DD00D903CB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -272,6 +279,19 @@
 			targetProxy = D3936F4519FC235200D903CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F2BD2E771AB0352800035417 /* Latch.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F2BD2E761AB0352800035417 /* Base */,
+				F2BD2E781AB0352F00035417 /* en */,
+				F2BD2E791AB0354E00035417 /* zh-Hant */,
+			);
+			name = Latch.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D3936F4C19FC235200D903CB /* Debug */ = {
