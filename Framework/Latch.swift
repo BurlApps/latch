@@ -48,34 +48,44 @@ public enum LatchError: Printable {
 
 public class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
     
-    // MARK: Instance Variables
-    public var delegate: LatchDelegate!
-    public var parentController: UIViewController!
-    public var touchReason: String = "We need to make sure it's you!"
-    public var passcodeInstruction: String = NSLocalizedString("Enter Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
-  public var changePasscodeInstruction: String = NSLocalizedString("Enter your old passcode", tableName: "Latch", bundle: LTBundle, comment: "")
-    public var enableTouch: Bool = true
-    public var enablePasscode: Bool = true
+  // MARK: Instance Variables
+  public var delegate: LatchDelegate!
+  public var parentController: UIViewController!
+  public var touchReason: String = "We need to make sure it's you!"
+  public var passcodeInstruction: String = NSLocalizedString("Enter Passcode", tableName: "Latch", bundle: LTBundle, comment: "") {
+    didSet {
+      self.passcode.instructions = self.passcodeInstruction
+    }
+  }
+  public var changePasscodeInstruction: String = NSLocalizedString("Enter your old passcode", tableName: "Latch", bundle: LTBundle, comment: "") {
+    didSet {
+      self.passcode.changeInstructions = self.changePasscodeInstruction
+    }
+  }
+  public var enableTouch: Bool = true
+  public var enablePasscode: Bool = true
   public var enablePasscodeChange: Bool = false
-    public var passcodeTheme: LTPasscodeTheme = LTPasscodeTheme()
+  public var passcodeTheme: LTPasscodeTheme = LTPasscodeTheme()
   
     
-    // MARK: Private Instance Variables
-    private var touchID: LTTouchID!
-    private var passcode: LTPasscode!
-    private var storage: LTStorage! = LTStorage()
+  // MARK: Private Instance Variables
+  private var touchID: LTTouchID!
+  private var passcode: LTPasscode!
+  private var storage: LTStorage! = LTStorage()
     
-    // MARK: Initializer
+  // MARK: Initializer
   public init(defaultPasscode: String? = nil) {
     // Initialize TouchID Module
     self.touchID = LTTouchID(reason: self.touchReason)
     self.touchID.delegate = self
     
     // Initialize Passcode Module
-    self.passcode = LTPasscode(instructions: self.passcodeInstruction, changeInstructions: self.changePasscodeInstruction)
+    self.passcode = LTPasscode()
     if let passcodeString = defaultPasscode {
       self.passcode.setDefaultPasscode(passcodeString)
     }
+    self.passcode.changeInstructions = self.changePasscodeInstruction
+    self.passcode.instructions = self.passcodeInstruction
     self.passcode.delegate = self
     self.passcode.theme = self.passcodeTheme
   }

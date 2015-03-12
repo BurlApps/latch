@@ -56,58 +56,55 @@ let LTBundle = NSBundle.mainBundle()
 
 class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     
-    // MARK: Instance Enum
-    enum State {
-        case Check, Set, Inactive, UpdateCheck, UpdateSet
-    }
+  // MARK: Instance Enum
+  enum State {
+      case Check, Set, Inactive, UpdateCheck, UpdateSet
+  }
     
-    // MARK: Instance Variables
-    var delegate: LTPasscodeDelegate!
-    var parentController: UIViewController!
-    var theme: LTPasscodeTheme!
+  // MARK: Instance Variables
+  var delegate: LTPasscodeDelegate!
+  var parentController: UIViewController!
+  var theme: LTPasscodeTheme!
   var enablePasscodeChange: Bool = false
-    
-    // MARK: Private Instance Variables
-    private var storage: LTStorage! = LTStorage()
-    private var state: State = .Inactive
-    private var passcode: [String] = []
-    private var previousPasscode: String = ""
-  private var changeInstructions: String!
-    private var instructions: String!
-    private var keys: [LTPasscodeKey] = [
-      LTPasscodeKey(number: 1, alpha: "", row: 0, column: 0),
-      LTPasscodeKey(number: 2, alpha: "ABC", row: 0, column: 1),
-      LTPasscodeKey(number: 3, alpha: "DEF", row: 0, column: 2),
-      LTPasscodeKey(number: 4, alpha: "GHI", row: 1, column: 0),
-      LTPasscodeKey(number: 5, alpha: "JKL", row: 1, column: 1),
-      LTPasscodeKey(number: 6, alpha: "MNO", row: 1, column: 2),
-      LTPasscodeKey(number: 7, alpha: "PQRS", row: 2, column: 0),
-      LTPasscodeKey(number: 8, alpha: "TUV", row: 2, column: 1),
-      LTPasscodeKey(number: 9, alpha: "WXYZ", row: 2, column: 2),
-      LTPasscodeKey(number: 0, alpha: nil, row: 3, column: 1),
-      LTPasscodeKey(number: -2, alpha: nil, row: 3, column: 0),
-      LTPasscodeKey(number: -1, alpha: nil, row: 3, column: 2)
-    ]
-    private var bubbles: [LTPasscodeBubble] = [
-        LTPasscodeBubble(number: 0),
-        LTPasscodeBubble(number: 1),
-        LTPasscodeBubble(number: 2),
-        LTPasscodeBubble(number: 3)
-    ]
-    
-    // MARK: IBOutlets
+  var changeInstructions: String!
+  var instructions: String!
   
-  @IBOutlet weak private var logoImageViewHeightLayoutConstraint: NSLayoutConstraint!
-    @IBOutlet weak var logoView: UIImageView!
-    @IBOutlet weak var instructionsLabel: UILabel!
-    @IBOutlet weak var keysView: UIView!
-    @IBOutlet weak var bubblesView: UIView!
+  // MARK: Private Instance Variables
+  private var storage: LTStorage! = LTStorage()
+  private var state: State = .Inactive
+  private var passcode: [String] = []
+  private var previousPasscode: String = ""
+  private var keys: [LTPasscodeKey] = [
+    LTPasscodeKey(number: 1, alpha: "", row: 0, column: 0),
+    LTPasscodeKey(number: 2, alpha: "ABC", row: 0, column: 1),
+    LTPasscodeKey(number: 3, alpha: "DEF", row: 0, column: 2),
+    LTPasscodeKey(number: 4, alpha: "GHI", row: 1, column: 0),
+    LTPasscodeKey(number: 5, alpha: "JKL", row: 1, column: 1),
+    LTPasscodeKey(number: 6, alpha: "MNO", row: 1, column: 2),
+    LTPasscodeKey(number: 7, alpha: "PQRS", row: 2, column: 0),
+    LTPasscodeKey(number: 8, alpha: "TUV", row: 2, column: 1),
+    LTPasscodeKey(number: 9, alpha: "WXYZ", row: 2, column: 2),
+    LTPasscodeKey(number: 0, alpha: nil, row: 3, column: 1),
+    LTPasscodeKey(number: -2, alpha: nil, row: 3, column: 0),
+    LTPasscodeKey(number: -1, alpha: nil, row: 3, column: 2)
+  ]
+  private var bubbles: [LTPasscodeBubble] = [
+    LTPasscodeBubble(number: 0),
+    LTPasscodeBubble(number: 1),
+    LTPasscodeBubble(number: 2),
+    LTPasscodeBubble(number: 3)
+  ]
     
+  // MARK: IBOutlets
+  @IBOutlet weak private var logoImageViewHeightLayoutConstraint: NSLayoutConstraint!
+  @IBOutlet weak var logoView: UIImageView!
+  @IBOutlet weak private var instructionsLabel: UILabel!
+  @IBOutlet weak var keysView: UIView!
+  @IBOutlet weak var bubblesView: UIView!
+  
     // MARK: Initializer
-  convenience init(instructions: String, changeInstructions: String) {
+  override convenience init() {
     self.init(nibName: "LTPasscode", bundle: LTBundle)
-    self.instructions = instructions
-    self.changeInstructions = changeInstructions
     self.updateStyle()
     if UIScreen.mainScreen().bounds.size.height < 568 {
       self.logoImageViewHeightLayoutConstraint.constant = 0
