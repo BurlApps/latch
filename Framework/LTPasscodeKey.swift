@@ -63,12 +63,12 @@ class LTPasscodeKey: UIButton {
         self.addSubview(self.numberLabel)
         
         // Attach Event Listner
-        self.addTarget(self, action: Selector("holdHandle:"), forControlEvents: UIControlEvents.TouchDown)
-        self.addTarget(self, action: Selector("tapHandle:"), forControlEvents: UIControlEvents.TouchUpInside)
+        self.addTarget(self, action: Selector("holdHandle"), forControlEvents: UIControlEvents.TouchDown)
+        self.addTarget(self, action: Selector("tapHandle"), forControlEvents: UIControlEvents.TouchUpInside)
     }
     
     // MARK: Gesture Handler
-    @IBAction func holdHandle(gesture: UIPanGestureRecognizer) {
+    func holdHandle() {
         if self.number >= 0 {
             self.backgroundColor = self.backgroundTouch
             self.layer.borderColor = self.borderTouch.CGColor
@@ -78,7 +78,7 @@ class LTPasscodeKey: UIButton {
         }
     }
     
-    @IBAction func tapHandle(gesture: UIPanGestureRecognizer) {
+    func tapHandle() {
         self.delegate!.keyPressed(self.number)
         
         UIView.animateWithDuration(0.4, delay: 0.05, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
