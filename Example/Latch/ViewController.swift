@@ -10,67 +10,67 @@ import UIKit
 
 class ViewController: UIViewController, LatchDelegate {
     
-    // MARK: Private Instance Variables
-    var latch: Latch!
+  // MARK: Private Instance Variables
+  var latch: Latch!
   private var touchIDAPIAvailable: Bool {
     return UIDevice.currentDevice().systemVersion.toInt() > 7
   }
     
-    // MARK: UIViewController Overrides
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.latch = Latch(defaultPasscode: "0000")
-        self.latch.delegate = self
-      self.latch.enablePasscodeChange = true
-        self.latch.parentController = self
-    }
+  // MARK: UIViewController Overrides
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
-    // MARK: IBAction
-    @IBAction func authorize(sender: UIButton) {
-        self.latch.enableTouch = self.touchIDAPIAvailable
-        self.latch.enablePasscode = true
-        self.latch.authorize()
-    }
+    self.latch = Latch(defaultPasscode: "0000")
+    self.latch.delegate = self
+    self.latch.enablePasscodeChange = true
+    self.latch.parentController = self
+  }
     
-    @IBAction func authorizePasscode(sender: UIButton) {
-        self.latch.enableTouch = false
-        self.latch.enablePasscode = true
-        self.latch.authorize()
+  // MARK: IBAction
+  @IBAction func authorize(sender: UIButton) {
+    self.latch.enableTouch = self.touchIDAPIAvailable
+    self.latch.enablePasscode = true
+    self.latch.authorize()
+  }
+  
+  @IBAction func authorizePasscode(sender: UIButton) {
+    self.latch.enableTouch = false
+    self.latch.enablePasscode = true
+    self.latch.authorize()
+  }
+  
+  @IBAction func authorizeTouch(sender: UIButton) {
+    if !touchIDAPIAvailable {
+      UIAlertView(title: "Error", message: "Touch ID only available iOS 8 and later.", delegate: nil, cancelButtonTitle: "OK").show()
+    } else {
+      self.latch.enableTouch = true
+      self.latch.enablePasscode = false
+      self.latch.authorize()
     }
-    
-    @IBAction func authorizeTouch(sender: UIButton) {
-      if !touchIDAPIAvailable {
-        UIAlertView(title: "Error", message: "Touch ID only available iOS 8 and later.", delegate: nil, cancelButtonTitle: "OK").show()
-      } else {
-        self.latch.enableTouch = true
-        self.latch.enablePasscode = false
-        self.latch.authorize()
-      }
-    }
-    
-    @IBAction func changePasscode(sender: UIButton) {
-        self.latch.updatePasscode()
-    }
-    
-    @IBAction func removePasscode(sender: UIButton) {
-        self.latch.removePasscode()
-    }
-    
-    // MARK: LatchDelegate Methods
-    func latchCanceled() {
-        println("canceled")
-    }
-    func latchGranted() {
-        println("access granged")
-    }
-    
-    func latchSet() {
-        println("passcode set")
-    }
-    
-    func latchDenied(reason: LatchError) {
-        println(reason)
-    }
+  }
+  
+  @IBAction func changePasscode(sender: UIButton) {
+      self.latch.updatePasscode()
+  }
+  
+  @IBAction func removePasscode(sender: UIButton) {
+      self.latch.removePasscode()
+  }
+  
+  // MARK: LatchDelegate Methods
+  func latchCanceled() {
+      println("canceled")
+  }
+  func latchGranted() {
+      println("access granged")
+  }
+  
+  func latchSet() {
+      println("passcode set")
+  }
+  
+  func latchDenied(reason: LatchError) {
+      println(reason)
+  }
 }
 

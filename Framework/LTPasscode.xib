@@ -38,11 +38,9 @@
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ukd-gg-591" userLabel="Keyboard View">
                     <rect key="frame" x="10" y="202" width="580" height="390"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9E-mL-G06" userLabel="Bubbles View">
                     <rect key="frame" x="210" y="152" width="180" height="25"/>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="Aws-uE-WZH"/>
                         <constraint firstAttribute="width" constant="180" id="XcK-uH-0rV"/>
