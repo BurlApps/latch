@@ -360,8 +360,11 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             self.bubblesView.frame.origin.x = -screenWidth
             
             }, completion: { finished in
-              
-              self.instructionsLabel.text = NSLocalizedString("Confirm Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
+              if self.state == .UpdateSet {
+                self.instructionsLabel.text = NSLocalizedString("Re-enter your new passcode", tableName: "Latch", bundle: LTBundle, comment: "")
+              } else {
+                self.instructionsLabel.text = NSLocalizedString("Confirm Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
+              }
               self.instructionsLabel.frame.origin.x = screenWidth
               self.bubblesView.frame.origin.x = screenWidth
               for bubble in self.bubbles {
