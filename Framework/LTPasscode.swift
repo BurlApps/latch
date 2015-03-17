@@ -235,11 +235,13 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
                 key.numberLabel.text = NSLocalizedString("Change Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
               } else {
                 key.numberLabel.text = ""
+                key.enabled = false
               }
-            case .UpdateCheck:
+            case .UpdateCheck, .UpdateSet:
               key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: LTBundle, comment: "")
             default:
               key.numberLabel.text = ""
+              key.enabled = false
             }
           }
             
@@ -346,10 +348,8 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             passcodeString += character
         }
         
-        self.passcode.removeAll(keepCapacity: false)
-        
         if self.previousPasscode.isEmpty {
-            self.previousPasscode = passcodeString
+          self.previousPasscode = passcodeString
           
           let originalInstructionsLabelFrame = self.instructionsLabel.frame
           let originalBubbleFrame = self.bubblesView.frame
@@ -376,7 +376,9 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
               UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 self.instructionsLabel.frame = originalInstructionsLabelFrame
                 self.bubblesView.frame = originalBubbleFrame
-                }, completion: nil)
+                }, completion: { [unowned self] _ in
+                  self.passcode.removeAll(keepCapacity: false)
+              })
               
           })
           
@@ -405,6 +407,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         self.configureKeys()
         return
       }
+      
         if number < 0 && self.passcode.count == 0 && self.state == .Set {
             self.dismiss()
             self.delegate.passcodeCanceled()
