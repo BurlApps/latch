@@ -81,7 +81,7 @@ class LTPasscodeKey: UIButton {
     func tapHandle() {
         self.delegate!.keyPressed(self.number)
         
-        UIView.animateWithDuration(0.4, delay: 0.05, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
+        UIView.animateWithDuration(0.1, delay: 0, options: UIViewAnimationOptions.CurveEaseOut, animations: { () -> Void in
             if self.number >= 0 {
                 self.backgroundColor = self.background
                 self.layer.borderColor = self.border.CGColor
