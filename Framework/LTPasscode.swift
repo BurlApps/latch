@@ -113,11 +113,29 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     }
   }
     
-    // MARK: UIViewController Overrides
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+  // MARK: - Life Cycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    // Update Instructions Label
+    self.instructionsLabel.text = self.instructions
+  }
+
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    
+    // Create Bubbles
+    self.configureBubbles()
+    
+    // Create Keys
+    self.configureKeys()
+  }
   
+  // MARK: - Rotation
   override func shouldAutorotate() -> Bool {
     return UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad
   }
@@ -129,23 +147,6 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
       return UIInterfaceOrientation.Portrait
     }
   }
-  
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Update Instructions Label
-        self.instructionsLabel.text = self.instructions
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // Create Bubbles
-        self.configureBubbles()
-        
-        // Create Keys
-        self.configureKeys()
-    }
   
     // MARK: Instance Methods
   func setDefaultPasscode(passcodeString: String) {

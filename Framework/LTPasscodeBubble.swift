@@ -39,7 +39,7 @@ class LTPasscodeBubble: UIView {
         var bubbleHeight: CGFloat = 12
         var bubblePadding: CGFloat = 8
         
-        var bubbleCenterX = self.parentView.frame.width/2
+        var bubbleCenterX = self.parentView.frame.width/2 + bubblePadding/2
         var bubbleX = bubbleCenterX + ((bubbleWidth + bubblePadding) * (self.number - 2))
         
         self.frame = CGRectMake(bubbleX, 0, bubbleWidth, bubbleHeight)

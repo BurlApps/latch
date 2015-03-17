@@ -5,12 +5,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LTPasscode" customModule="Latch" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LTPasscode" customModule="avvideo" customModuleProvider="target">
             <connections>
                 <outlet property="bubblesView" destination="r9E-mL-G06" id="cFy-ee-Dny"/>
                 <outlet property="instructionsLabel" destination="Qu9-4s-sa1" id="QV1-oQ-bBi"/>
                 <outlet property="keysView" destination="Ukd-gg-591" id="T7K-w4-46j"/>
-                <outlet property="logoImageViewHeightLayoutConstraint" destination="wxv-Sz-XLr" id="XFj-vs-7PU"/>
+                <outlet property="logoImageViewHeightLayoutConstraint" destination="3NS-hv-eef" id="Lqk-3P-Ad1"/>
                 <outlet property="logoView" destination="KEX-fo-6gr" id="qbq-Pb-vRn"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,54 +20,61 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KEX-fo-6gr" userLabel="Logo Image View">
-                    <rect key="frame" x="10" y="50" width="580" height="50"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rCJ-hk-3px" userLabel="Content View">
+                    <rect key="frame" x="184" y="70" width="231" height="460"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KEX-fo-6gr" userLabel="Logo Image View">
+                            <rect key="frame" x="0.0" y="0.0" width="231" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="3NS-hv-eef"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qu9-4s-sa1">
+                            <rect key="frame" x="0.0" y="62" width="231" height="35"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="6gF-s0-4oy"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9E-mL-G06" userLabel="Bubbles View">
+                            <rect key="frame" x="0.0" y="109" width="231" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="12" id="ArO-ql-KQG"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ukd-gg-591" userLabel="Keyboard View">
+                            <rect key="frame" x="0.0" y="146" width="231" height="314"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="231" id="3o2-Y3-erk"/>
+                                <constraint firstAttribute="height" constant="314" id="Ufh-4X-eIo"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="50" id="wxv-Sz-XLr"/>
-                    </constraints>
-                </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Password" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qu9-4s-sa1">
-                    <rect key="frame" x="10" y="105" width="580" height="35"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="35" id="GG4-57-Tr8"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ukd-gg-591" userLabel="Keyboard View">
-                    <rect key="frame" x="10" y="202" width="580" height="390"/>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r9E-mL-G06" userLabel="Bubbles View">
-                    <rect key="frame" x="210" y="152" width="180" height="25"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="25" id="Aws-uE-WZH"/>
-                        <constraint firstAttribute="width" constant="180" id="XcK-uH-0rV"/>
+                        <constraint firstItem="r9E-mL-G06" firstAttribute="leading" secondItem="rCJ-hk-3px" secondAttribute="leading" id="1SM-Ec-wpl"/>
+                        <constraint firstItem="KEX-fo-6gr" firstAttribute="top" secondItem="rCJ-hk-3px" secondAttribute="top" id="5qx-DA-cWb"/>
+                        <constraint firstAttribute="trailing" secondItem="Ukd-gg-591" secondAttribute="trailing" id="BXc-XT-ujZ"/>
+                        <constraint firstAttribute="bottom" secondItem="Ukd-gg-591" secondAttribute="bottom" id="ED6-TP-xJr"/>
+                        <constraint firstItem="Ukd-gg-591" firstAttribute="leading" secondItem="rCJ-hk-3px" secondAttribute="leading" id="EEs-Sk-oDO"/>
+                        <constraint firstAttribute="trailing" secondItem="r9E-mL-G06" secondAttribute="trailing" id="Jd2-gv-Bcr"/>
+                        <constraint firstAttribute="trailing" secondItem="KEX-fo-6gr" secondAttribute="trailing" id="Jpt-By-vat"/>
+                        <constraint firstItem="Qu9-4s-sa1" firstAttribute="top" secondItem="KEX-fo-6gr" secondAttribute="bottom" constant="12" id="Maz-QE-WZl"/>
+                        <constraint firstItem="Qu9-4s-sa1" firstAttribute="leading" secondItem="rCJ-hk-3px" secondAttribute="leading" id="Tt6-SN-aQP"/>
+                        <constraint firstItem="r9E-mL-G06" firstAttribute="top" secondItem="Qu9-4s-sa1" secondAttribute="bottom" constant="12" id="W1o-1L-vJz"/>
+                        <constraint firstAttribute="trailing" secondItem="Qu9-4s-sa1" secondAttribute="trailing" id="bc9-JY-HiW"/>
+                        <constraint firstItem="KEX-fo-6gr" firstAttribute="leading" secondItem="rCJ-hk-3px" secondAttribute="leading" id="gvT-ye-gLu"/>
+                        <constraint firstItem="Ukd-gg-591" firstAttribute="top" secondItem="r9E-mL-G06" secondAttribute="bottom" constant="25" id="ywN-3y-oXD"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Ukd-gg-591" secondAttribute="trailing" constant="10" id="2Ac-WX-pIp"/>
-                <constraint firstAttribute="centerX" secondItem="r9E-mL-G06" secondAttribute="centerX" id="2Mi-1x-uIG"/>
-                <constraint firstItem="Ukd-gg-591" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="6iF-hZ-4hp"/>
-                <constraint firstItem="r9E-mL-G06" firstAttribute="top" secondItem="Qu9-4s-sa1" secondAttribute="bottom" constant="12" id="9A1-PP-hCw"/>
-                <constraint firstAttribute="trailing" secondItem="KEX-fo-6gr" secondAttribute="trailing" constant="10" id="BY2-zl-vJh"/>
-                <constraint firstAttribute="centerX" secondItem="KEX-fo-6gr" secondAttribute="centerX" id="F6i-og-Unr"/>
-                <constraint firstItem="Ukd-gg-591" firstAttribute="top" secondItem="Qu9-4s-sa1" secondAttribute="bottom" constant="50" id="MCt-o6-IPq"/>
-                <constraint firstItem="Ukd-gg-591" firstAttribute="top" secondItem="r9E-mL-G06" secondAttribute="bottom" constant="25" id="NG5-tw-Jce"/>
-                <constraint firstItem="KEX-fo-6gr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="QDE-dy-27c"/>
-                <constraint firstAttribute="bottom" secondItem="Ukd-gg-591" secondAttribute="bottom" constant="8" id="UlK-b2-Adj"/>
-                <constraint firstItem="Qu9-4s-sa1" firstAttribute="top" secondItem="KEX-fo-6gr" secondAttribute="bottom" constant="5" id="cJ7-w5-rdi"/>
-                <constraint firstItem="Qu9-4s-sa1" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="joP-da-3XR"/>
-                <constraint firstItem="KEX-fo-6gr" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="sQo-NR-Vro"/>
-                <constraint firstAttribute="trailing" secondItem="Qu9-4s-sa1" secondAttribute="trailing" constant="10" id="wsn-bb-D7c"/>
+                <constraint firstAttribute="centerY" secondItem="rCJ-hk-3px" secondAttribute="centerY" id="3bm-iZ-fBj"/>
+                <constraint firstAttribute="centerX" secondItem="rCJ-hk-3px" secondAttribute="centerX" id="HDR-cW-Lxa"/>
             </constraints>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="MCt-o6-IPq"/>
-                </mask>
-            </variation>
         </view>
     </objects>
 </document>

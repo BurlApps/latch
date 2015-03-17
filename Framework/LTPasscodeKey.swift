@@ -95,8 +95,8 @@ class LTPasscodeKey: UIButton {
     // MARK: Instance Methods
     func configureKey() {
         // Create Frame
-        var keyWidth: CGFloat = 65
-        var keyHeight: CGFloat = 65
+        var keyWidth: CGFloat = 64
+        var keyHeight: CGFloat = 64
         var keyPadding: CGFloat = 18
         
         var keyCenterX = self.parentView.frame.width/2 - (keyWidth/2)
