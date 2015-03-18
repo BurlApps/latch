@@ -212,42 +212,43 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     }
     
     internal func configureKeys() {
-        for key in self.keys {
-            key.delegate = self
-            key.parentView = self.keysView
-            
-            key.border = self.theme.keyPadBorder
-            key.background = self.theme.keyPadBackground
-            
-            key.borderTouch = self.theme.keyPadTouchBorder
-            key.backgroundTouch = self.theme.keyPadTouchBackground
-          
-          if key.number == -1 {
-            if self.state == .Set {
-              key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch",  bundle: LTBundle, comment: "")
+      for key in self.keys {
+        key.enabled = true
+        key.delegate = self
+        key.parentView = self.keysView
+        
+        key.border = self.theme.keyPadBorder
+        key.background = self.theme.keyPadBackground
+        
+        key.borderTouch = self.theme.keyPadTouchBorder
+        key.backgroundTouch = self.theme.keyPadTouchBackground
+        
+        if key.number == -1 {
+          if self.state == .Set {
+            key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch",  bundle: LTBundle, comment: "")
+          } else {
+            key.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: LTBundle, comment: "")
+          }
+        } else if key.number == -2 {
+          switch self.state {
+          case .Check:
+            if self.storage.readPasscode() != nil {
+              key.numberLabel.text = NSLocalizedString("Change Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
             } else {
-              key.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: LTBundle, comment: "")
-            }
-          } else if key.number == -2 {
-            switch self.state {
-            case .Check:
-              if self.storage.readPasscode() != nil {
-                key.numberLabel.text = NSLocalizedString("Change Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
-              } else {
-                key.numberLabel.text = ""
-                key.enabled = false
-              }
-            case .UpdateCheck, .UpdateSet:
-              key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: LTBundle, comment: "")
-            default:
               key.numberLabel.text = ""
               key.enabled = false
             }
+          case .UpdateCheck, .UpdateSet:
+            key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: LTBundle, comment: "")
+          default:
+            key.numberLabel.text = ""
+            key.enabled = false
           }
-            
-            key.configureKey()
-            self.keysView.addSubview(key)
         }
+          
+        key.configureKey()
+        self.keysView.addSubview(key)
+      }
     }
     
     internal func updateStyle() {
