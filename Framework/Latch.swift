@@ -52,12 +52,12 @@ public class Latch: LTTouchIDDelegate, LTPasscodeDelegate {
   public var delegate: LatchDelegate!
   public var parentController: UIViewController!
   public var touchReason: String = "We need to make sure it's you!"
-  public var passcodeInstruction: String = NSLocalizedString("Enter Passcode", tableName: "Latch", bundle: LTBundle, comment: "") {
+  public var passcodeInstruction: String = NSLocalizedString("Enter Passcode", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "") {
     didSet {
       self.passcode.instructions = self.passcodeInstruction
     }
   }
-  public var changePasscodeInstruction: String = NSLocalizedString("Enter your old passcode", tableName: "Latch", bundle: LTBundle, comment: "") {
+  public var changePasscodeInstruction: String = NSLocalizedString("Enter your old passcode", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "") {
     didSet {
       self.passcode.changeInstructions = self.changePasscodeInstruction
     }

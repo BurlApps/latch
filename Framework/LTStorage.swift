@@ -17,7 +17,7 @@ class LTStorage {
     // MARK: Initializer Method
     init() {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-        let documentsDirectory = paths.objectAtIndex(0)as NSString
+        let documentsDirectory = paths.objectAtIndex(0)as! NSString
         self.path = documentsDirectory.stringByAppendingPathComponent("Latch.plist")
         
         let fileManager = NSFileManager.defaultManager()

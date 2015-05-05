@@ -15,7 +15,7 @@ public enum LTPasscodeStatusBar {
 }
 
 public struct LTPasscodeTheme {
-    var logo: UIImage = UIImage(contentsOfFile: LTBundle.pathForResource("Latch", ofType: "png")!)!
+  var logo: UIImage = UIImage(named: "Latch", inBundle:NSBundle(forClass: Latch.self), compatibleWithTraitCollection:nil)!
     var logoTint: UIColor! = UIColor(red:0.12, green:0.67, blue:0.95, alpha:1)
     var logoErrorTint: UIColor = UIColor.redColor()
    
@@ -47,12 +47,6 @@ protocol LTPasscodeDelegate {
     func passcodeFailed(reason: LatchError)
     func passcodeCanceled()
 }
-
-#if COCOAPODS
-let LTBundle = NSBundle(path: NSBundle.mainBundle().privateFrameworksPath!.stringByAppendingPathComponent("Latch.framework"))!
-#else
-let LTBundle = NSBundle.mainBundle()
-#endif
 
 class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     
@@ -103,8 +97,8 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
   @IBOutlet weak var bubblesView: UIView!
   
     // MARK: Initializer
-  override convenience init() {
-    self.init(nibName: "LTPasscode", bundle: LTBundle)
+  convenience init() {
+    self.init(nibName: "LTPasscode", bundle: NSBundle(forClass: Latch.self))
     self.updateStyle()
     if UIScreen.mainScreen().bounds.size.height < 568 {
       self.logoImageViewHeightLayoutConstraint.constant = 0
@@ -225,21 +219,21 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         
         if key.number == -1 {
           if self.state == .Set {
-            key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch",  bundle: LTBundle, comment: "")
+            key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch",  bundle: NSBundle(forClass: Latch.self), comment: "")
           } else {
-            key.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: LTBundle, comment: "")
+            key.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
           }
         } else if key.number == -2 {
           switch self.state {
           case .Check:
             if self.storage.readPasscode() != nil {
-              key.numberLabel.text = NSLocalizedString("Change Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
+              key.numberLabel.text = NSLocalizedString("Change Passcode", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
             } else {
               key.numberLabel.text = ""
               key.enabled = false
             }
           case .UpdateCheck, .UpdateSet:
-            key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: LTBundle, comment: "")
+            key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
           default:
             key.numberLabel.text = ""
             key.enabled = false
@@ -320,7 +314,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
               
               }, completion: { finished in
                 
-                self.instructionsLabel.text = NSLocalizedString("Enter your new passcode", tableName: "Latch", bundle: LTBundle, comment: "")
+                self.instructionsLabel.text = NSLocalizedString("Enter your new passcode", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
                 self.instructionsLabel.frame.origin.x = screenWidth
                 self.bubblesView.frame.origin.x = screenWidth
                 for bubble in self.bubbles {
@@ -363,9 +357,9 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             
             }, completion: { finished in
               if self.state == .UpdateSet {
-                self.instructionsLabel.text = NSLocalizedString("Re-enter your new passcode", tableName: "Latch", bundle: LTBundle, comment: "")
+                self.instructionsLabel.text = NSLocalizedString("Re-enter your new passcode", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
               } else {
-                self.instructionsLabel.text = NSLocalizedString("Confirm Passcode", tableName: "Latch", bundle: LTBundle, comment: "")
+                self.instructionsLabel.text = NSLocalizedString("Confirm Passcode", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
               }
               self.instructionsLabel.frame.origin.x = screenWidth
               self.bubblesView.frame.origin.x = screenWidth
@@ -441,9 +435,9 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         
         if self.state == .Set {
             if self.passcode.count == 0 {
-                self.keys.last?.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: LTBundle, comment: "")
+                self.keys.last?.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
             } else {
-                self.keys.last?.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: LTBundle, comment: "")
+                self.keys.last?.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
             }
         }
     }
