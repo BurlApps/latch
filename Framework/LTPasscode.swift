@@ -415,16 +415,15 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             self.passcode.removeLast()
         }
 
-      // FIXME:
-//        for (index, bubble) in enumerate(self.bubbles) {
-//            if index <= self.passcode.count - 1 {
-//                bubble.state = .Active
-//            } else {
-//                bubble.state = .Normal
-//            }
-//            
-//            bubble.updateStyle()
-//        }
+        for (index, bubble) in self.bubbles.enumerate() {
+            if index <= self.passcode.count - 1 {
+                bubble.state = .Active
+            } else {
+                bubble.state = .Normal
+            }
+            
+            bubble.updateStyle()
+        }
 
         if self.passcode.count == 4 {
             if self.state == .Check || self.state == .UpdateCheck {

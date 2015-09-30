@@ -25,9 +25,12 @@ class LTStorage {
         // Check if file exists
         if !fileManager.fileExistsAtPath(path)  {
             // If it doesn't, copy it from the default file in the Resources folder
-//            let bundle = NSBundle.mainBundle().pathForResource("Info", ofType: "plist")
-          // FIXME:
-//            fileManager.copyItemAtPath(bundle!, toPath: self.path, error:nil)
+            let bundle = NSBundle.mainBundle().pathForResource("Info", ofType: "plist")
+          do {
+            try fileManager.copyItemAtPath(bundle!, toPath: self.path)
+          } catch {
+            fatalError("\(error)")
+          }
         }
         
         self.data = NSMutableArray(contentsOfFile: path)
