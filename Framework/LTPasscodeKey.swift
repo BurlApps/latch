@@ -46,8 +46,8 @@ class LTPasscodeKey: UIButton {
             self.numberLabel.numberOfLines = 2
             
             if alpha != nil {
-                var attributedText = NSMutableAttributedString(string: "\(number)")
-                var alphaText = NSMutableAttributedString(string: "\n\(alpha)")
+                let attributedText = NSMutableAttributedString(string: "\(number)")
+                let alphaText = NSMutableAttributedString(string: "\n\(alpha)")
                 alphaText.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Thin", size: 12)!, range: NSMakeRange(0, alphaText.length))
                 attributedText.appendAttributedString(alphaText)
                 
@@ -95,13 +95,13 @@ class LTPasscodeKey: UIButton {
     // MARK: Instance Methods
     func configureKey() {
         // Create Frame
-        var keyWidth: CGFloat = 64
-        var keyHeight: CGFloat = 64
-        var keyPadding: CGFloat = 18
+        let keyWidth: CGFloat = 64
+        let keyHeight: CGFloat = 64
+        let keyPadding: CGFloat = 18
         
-        var keyCenterX = self.parentView.frame.width/2 - (keyWidth/2)
-        var keyX = keyCenterX + ((keyWidth + keyPadding) * (self.column - 1))
-        var keyY = (keyHeight + keyPadding) * self.row
+        let keyCenterX = self.parentView.frame.width/2 - (keyWidth/2)
+        let keyX = keyCenterX + ((keyWidth + keyPadding) * (self.column - 1))
+        let keyY = (keyHeight + keyPadding) * self.row
 
         self.frame = CGRectMake(keyX, keyY, keyWidth, keyHeight)
         

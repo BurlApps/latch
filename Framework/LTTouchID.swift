@@ -30,7 +30,7 @@ class LTTouchID {
     
     // MARK: Instance Methods
     func authorize() {
-        var context = LAContext()
+        let context = LAContext()
         var error : NSError?
         
         // Test if TouchID fingerprint authentication is available on the device and a fingerprint has been enrolled.

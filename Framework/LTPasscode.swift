@@ -274,7 +274,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             bubble.updateStyle()
         }
         
-        var animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.autoreverses = true
         animation.repeatCount = 2
         animation.duration = 0.07
@@ -414,17 +414,18 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         } else if self.passcode.count > 0 {
             self.passcode.removeLast()
         }
-        
-        for (index, bubble) in enumerate(self.bubbles) {
-            if index <= self.passcode.count - 1 {
-                bubble.state = .Active
-            } else {
-                bubble.state = .Normal
-            }
-            
-            bubble.updateStyle()
-        }
-        
+
+      // FIXME:
+//        for (index, bubble) in enumerate(self.bubbles) {
+//            if index <= self.passcode.count - 1 {
+//                bubble.state = .Active
+//            } else {
+//                bubble.state = .Normal
+//            }
+//            
+//            bubble.updateStyle()
+//        }
+
         if self.passcode.count == 4 {
             if self.state == .Check || self.state == .UpdateCheck {
                 self.checkPasscode()

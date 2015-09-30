@@ -16,7 +16,7 @@ public protocol LatchDelegate {
     func latchCanceled()
 }
 
-public enum LatchError: Printable {
+public enum LatchError: CustomStringConvertible {
     case TouchIDAuthFailed, TouchIDSystemCancel, TouchIDPasscodeNotSet,
     TouchIDNotAvailable, TouchIDNotEnrolled, NoAuthMethodsAvailable,
     TouchIDNotAvailablePasscodeDisabled, TouchIDCancelledPasscodeDisabled,

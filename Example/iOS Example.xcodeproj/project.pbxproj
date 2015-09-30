@@ -10,7 +10,6 @@
 		D3936F3519FC235200D903CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F3419FC235200D903CB /* AppDelegate.swift */; };
 		D3936F3719FC235200D903CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F3619FC235200D903CB /* ViewController.swift */; };
 		D3936F3C19FC235200D903CB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D3936F3B19FC235200D903CB /* Images.xcassets */; };
-		D3936F4B19FC235200D903CB /* LatchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3936F4A19FC235200D903CB /* LatchTests.swift */; };
 		D3936F6019FC32DD00D903CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D3936F5F19FC32DD00D903CB /* Main.storyboard */; };
 		F2BD2E6B1AB01AE900035417 /* Latch.png in Resources */ = {isa = PBXBuildFile; fileRef = F2BD2E631AB01AE900035417 /* Latch.png */; };
 		F2BD2E6C1AB01AE900035417 /* Latch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2BD2E641AB01AE900035417 /* Latch.swift */; };
@@ -23,23 +22,12 @@
 		F2BD2E751AB0352800035417 /* Latch.strings in Resources */ = {isa = PBXBuildFile; fileRef = F2BD2E771AB0352800035417 /* Latch.strings */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D3936F4519FC235200D903CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D3936F2719FC235200D903CB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D3936F2E19FC235200D903CB;
-			remoteInfo = Latch;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		D3936F2F19FC235200D903CB /* Latch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Latch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3936F3319FC235200D903CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3936F3419FC235200D903CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D3936F3619FC235200D903CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D3936F3B19FC235200D903CB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		D3936F4419FC235200D903CB /* iOS ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "iOS ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D3936F4919FC235200D903CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D3936F4A19FC235200D903CB /* LatchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatchTests.swift; sourceTree = "<group>"; };
 		D3936F5F19FC32DD00D903CB /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Latch/Main.storyboard; sourceTree = "<group>"; };
@@ -64,13 +52,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D3936F4119FC235200D903CB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -87,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				D3936F2F19FC235200D903CB /* Latch.app */,
-				D3936F4419FC235200D903CB /* iOS ExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,40 +147,19 @@
 			productReference = D3936F2F19FC235200D903CB /* Latch.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D3936F4319FC235200D903CB /* iOS ExampleTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D3936F5119FC235200D903CB /* Build configuration list for PBXNativeTarget "iOS ExampleTests" */;
-			buildPhases = (
-				D3936F4019FC235200D903CB /* Sources */,
-				D3936F4119FC235200D903CB /* Frameworks */,
-				D3936F4219FC235200D903CB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D3936F4619FC235200D903CB /* PBXTargetDependency */,
-			);
-			name = "iOS ExampleTests";
-			productName = LatchTests;
-			productReference = D3936F4419FC235200D903CB /* iOS ExampleTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		D3936F2719FC235200D903CB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Brian Vallelunga";
 				TargetAttributes = {
 					D3936F2E19FC235200D903CB = {
 						CreatedOnToolsVersion = 6.1;
-						DevelopmentTeam = R5K2X99B7E;
-					};
-					D3936F4319FC235200D903CB = {
-						CreatedOnToolsVersion = 6.1;
-						TestTargetID = D3936F2E19FC235200D903CB;
+						DevelopmentTeam = 42M2D7SKCJ;
 					};
 				};
 			};
@@ -219,7 +178,6 @@
 			projectRoot = "";
 			targets = (
 				D3936F2E19FC235200D903CB /* Latch_iOS7 */,
-				D3936F4319FC235200D903CB /* iOS ExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -234,13 +192,6 @@
 				D3936F3C19FC235200D903CB /* Images.xcassets in Resources */,
 				F2BD2E751AB0352800035417 /* Latch.strings in Resources */,
 				D3936F6019FC32DD00D903CB /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D3936F4219FC235200D903CB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,23 +213,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D3936F4019FC235200D903CB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D3936F4B19FC235200D903CB /* LatchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D3936F4619FC235200D903CB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D3936F2E19FC235200D903CB /* Latch_iOS7 */;
-			targetProxy = D3936F4519FC235200D903CB /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F2BD2E771AB0352800035417 /* Latch.strings */ = {
@@ -314,6 +249,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -380,8 +316,9 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Latch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vallelungabrian.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Latch;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -395,49 +332,12 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Latch/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vallelungabrian.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Latch;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		D3936F5219FC235200D903CB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LatchTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "iOS ExampleTests";
-				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Latch.app/Latch";
-			};
-			name = Debug;
-		};
-		D3936F5319FC235200D903CB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = LatchTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "iOS ExampleTests";
-				PROVISIONING_PROFILE = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Latch.app/Latch";
 			};
 			name = Release;
 		};
@@ -458,15 +358,6 @@
 			buildConfigurations = (
 				D3936F4F19FC235200D903CB /* Debug */,
 				D3936F5019FC235200D903CB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D3936F5119FC235200D903CB /* Build configuration list for PBXNativeTarget "iOS ExampleTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D3936F5219FC235200D903CB /* Debug */,
-				D3936F5319FC235200D903CB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
