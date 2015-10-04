@@ -15,7 +15,7 @@ public enum LTPasscodeStatusBar {
 }
 
 public struct LTPasscodeTheme {
-    var logo: UIImage = UIImage(named: "Latch", inBundle: FrameworkBundle, compatibleWithTraitCollection: nil)!
+  var logo: UIImage = UIImage(named: "Latch", inBundle:NSBundle(forClass: Latch.self), compatibleWithTraitCollection:nil)!
     var logoTint: UIColor! = UIColor(red:0.12, green:0.67, blue:0.95, alpha:1)
     var logoErrorTint: UIColor = UIColor.redColor()
    
@@ -48,84 +48,99 @@ protocol LTPasscodeDelegate {
     func passcodeCanceled()
 }
 
-let FrameworkBundle = NSBundle(path: NSBundle.mainBundle().privateFrameworksPath!.stringByAppendingPathComponent("Latch.framework"))
-
 class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     
-    // MARK: Instance Enum
-    enum State {
-        case Check, Set, Inactive, UpdateCheck, UpdateSet
-    }
-    
-    // MARK: Instance Variables
-    var delegate: LTPasscodeDelegate!
-    var parentController: UIViewController!
-    var theme: LTPasscodeTheme!
-  var enablePasscodeChange: Bool = false
-    
-    // MARK: Private Instance Variables
-    private var storage: LTStorage! = LTStorage()
-    private var state: State = .Inactive
-    private var passcode: [String] = []
-    private var previousPasscode: String = ""
-  private var changeInstructions: String!
-    private var instructions: String!
-    private var keys: [LTPasscodeKey] = [
-      LTPasscodeKey(number: 1, alpha: "", row: 0, column: 0),
-      LTPasscodeKey(number: 2, alpha: "ABC", row: 0, column: 1),
-      LTPasscodeKey(number: 3, alpha: "DEF", row: 0, column: 2),
-      LTPasscodeKey(number: 4, alpha: "GHI", row: 1, column: 0),
-      LTPasscodeKey(number: 5, alpha: "JKL", row: 1, column: 1),
-      LTPasscodeKey(number: 6, alpha: "MNO", row: 1, column: 2),
-      LTPasscodeKey(number: 7, alpha: "PQRS", row: 2, column: 0),
-      LTPasscodeKey(number: 8, alpha: "TUV", row: 2, column: 1),
-      LTPasscodeKey(number: 9, alpha: "WXYZ", row: 2, column: 2),
-      LTPasscodeKey(number: 0, alpha: nil, row: 3, column: 1),
-      LTPasscodeKey(number: -2, alpha: nil, row: 3, column: 0),
-      LTPasscodeKey(number: -1, alpha: nil, row: 3, column: 2)
-    ]
-    private var bubbles: [LTPasscodeBubble] = [
-        LTPasscodeBubble(number: 0),
-        LTPasscodeBubble(number: 1),
-        LTPasscodeBubble(number: 2),
-        LTPasscodeBubble(number: 3)
-    ]
-    
-    // MARK: IBOutlets
-    @IBOutlet weak var logoView: UIImageView!
-    @IBOutlet weak var instructionsLabel: UILabel!
-    @IBOutlet weak var keysView: UIView!
-    @IBOutlet weak var bubblesView: UIView!
-    
-    // MARK: Initializer
-  convenience init(instructions: String, changeInstructions: String) {
-    self.init(nibName: "LTPasscode", bundle: FrameworkBundle)
-    self.instructions = instructions
-    self.changeInstructions = changeInstructions
-    self.updateStyle()
+  // MARK: Instance Enum
+  enum State {
+      case Check, Set, Inactive, UpdateCheck, UpdateSet
   }
     
-    // MARK: UIViewController Overrides
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+  // MARK: Instance Variables
+  var delegate: LTPasscodeDelegate!
+  var parentController: UIViewController!
+  var theme: LTPasscodeTheme!
+  var enablePasscodeChange: Bool = false
+  var changeInstructions: String!
+  var instructions: String!
+  
+  // MARK: Private Instance Variables
+  private var storage: LTStorage! = LTStorage()
+  private var state: State = .Inactive
+  private var passcode: [String] = []
+  private var previousPasscode: String = ""
+  private var keys: [LTPasscodeKey] = [
+    LTPasscodeKey(number: 1, alpha: "", row: 0, column: 0),
+    LTPasscodeKey(number: 2, alpha: "ABC", row: 0, column: 1),
+    LTPasscodeKey(number: 3, alpha: "DEF", row: 0, column: 2),
+    LTPasscodeKey(number: 4, alpha: "GHI", row: 1, column: 0),
+    LTPasscodeKey(number: 5, alpha: "JKL", row: 1, column: 1),
+    LTPasscodeKey(number: 6, alpha: "MNO", row: 1, column: 2),
+    LTPasscodeKey(number: 7, alpha: "PQRS", row: 2, column: 0),
+    LTPasscodeKey(number: 8, alpha: "TUV", row: 2, column: 1),
+    LTPasscodeKey(number: 9, alpha: "WXYZ", row: 2, column: 2),
+    LTPasscodeKey(number: 0, alpha: nil, row: 3, column: 1),
+    LTPasscodeKey(number: -2, alpha: nil, row: 3, column: 0),
+    LTPasscodeKey(number: -1, alpha: nil, row: 3, column: 2)
+  ]
+  private var bubbles: [LTPasscodeBubble] = [
+    LTPasscodeBubble(number: 0),
+    LTPasscodeBubble(number: 1),
+    LTPasscodeBubble(number: 2),
+    LTPasscodeBubble(number: 3)
+  ]
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // Update Instructions Label
-        self.instructionsLabel.text = self.instructions
+  // MARK: IBOutlets
+  @IBOutlet weak private var logoImageViewHeightLayoutConstraint: NSLayoutConstraint!
+  @IBOutlet weak var logoView: UIImageView!
+  @IBOutlet weak private var instructionsLabel: UILabel!
+  @IBOutlet weak var keysView: UIView!
+  @IBOutlet weak var bubblesView: UIView!
+  
+    // MARK: Initializer
+  convenience init() {
+    self.init(nibName: "LTPasscode", bundle: NSBundle(forClass: Latch.self))
+    self.updateStyle()
+    if UIScreen.mainScreen().bounds.size.height < 568 {
+      self.logoImageViewHeightLayoutConstraint.constant = 0
+    } else {
+      self.logoImageViewHeightLayoutConstraint.constant = 50
     }
+  }
     
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        // Create Bubbles
-        self.configureBubbles()
-        
-        // Create Keys
-        self.configureKeys()
+  // MARK: - Life Cycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+  }
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    // Update Instructions Label
+    self.instructionsLabel.text = self.instructions
+  }
+
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
+    
+    // Create Bubbles
+    self.configureBubbles()
+    
+    // Create Keys
+    self.configureKeys()
+  }
+  
+  // MARK: - Rotation
+  override func shouldAutorotate() -> Bool {
+    return UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad
+  }
+  
+  override func preferredInterfaceOrientationForPresentation() -> UIInterfaceOrientation {
+    if UIDevice.currentDevice().userInterfaceIdiom == UIUserInterfaceIdiom.Pad {
+      return UIApplication.sharedApplication().statusBarOrientation
+    } else {
+      return UIInterfaceOrientation.Portrait
     }
+  }
   
     // MARK: Instance Methods
   func setDefaultPasscode(passcodeString: String) {
@@ -191,33 +206,43 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
     }
     
     internal func configureKeys() {
-        for key in self.keys {
-            key.delegate = self
-            key.parentView = self.keysView
-            
-            key.border = self.theme.keyPadBorder
-            key.background = self.theme.keyPadBackground
-            
-            key.borderTouch = self.theme.keyPadTouchBorder
-            key.backgroundTouch = self.theme.keyPadTouchBackground
-          
-          if key.number == -1 {
-            if self.state == .Set {
-              key.numberLabel.text = NSLocalizedString("Cancel", bundle: FrameworkBundle!, comment: "")
-            } else {
-              key.numberLabel.text = NSLocalizedString("Delete", bundle: FrameworkBundle!, comment: "")
-            }
-          } else if key.number == -2 {
-            if self.state == .Check && self.enablePasscodeChange && self.storage.readPasscode() != nil {
-              key.numberLabel.text = NSLocalizedString("Change Passcode", bundle: FrameworkBundle!, comment: "")
-            } else {
-              key.numberLabel.text = NSLocalizedString("Cancel", bundle: FrameworkBundle!, comment: "")
-            }
+      for key in self.keys {
+        key.enabled = true
+        key.delegate = self
+        key.parentView = self.keysView
+        
+        key.border = self.theme.keyPadBorder
+        key.background = self.theme.keyPadBackground
+        
+        key.borderTouch = self.theme.keyPadTouchBorder
+        key.backgroundTouch = self.theme.keyPadTouchBackground
+        
+        if key.number == -1 {
+          if self.state == .Set {
+            key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch",  bundle: NSBundle(forClass: Latch.self), comment: "")
+          } else {
+            key.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
           }
-            
-            key.configureKey()
-            self.keysView.addSubview(key)
+        } else if key.number == -2 {
+          switch self.state {
+          case .Check:
+            if self.storage.readPasscode() != nil {
+              key.numberLabel.text = NSLocalizedString("Change Passcode", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
+            } else {
+              key.numberLabel.text = ""
+              key.enabled = false
+            }
+          case .UpdateCheck, .UpdateSet:
+            key.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
+          default:
+            key.numberLabel.text = ""
+            key.enabled = false
+          }
         }
+          
+        key.configureKey()
+        self.keysView.addSubview(key)
+      }
     }
     
     internal func updateStyle() {
@@ -249,7 +274,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             bubble.updateStyle()
         }
         
-        var animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
+        let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.autoreverses = true
         animation.repeatCount = 2
         animation.duration = 0.07
@@ -289,7 +314,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
               
               }, completion: { finished in
                 
-                self.instructionsLabel.text = NSLocalizedString("Enter your new passcode", bundle: FrameworkBundle!, comment: "")
+                self.instructionsLabel.text = NSLocalizedString("Enter your new passcode", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
                 self.instructionsLabel.frame.origin.x = screenWidth
                 self.bubblesView.frame.origin.x = screenWidth
                 for bubble in self.bubbles {
@@ -318,10 +343,8 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             passcodeString += character
         }
         
-        self.passcode.removeAll(keepCapacity: false)
-        
         if self.previousPasscode.isEmpty {
-            self.previousPasscode = passcodeString
+          self.previousPasscode = passcodeString
           
           let originalInstructionsLabelFrame = self.instructionsLabel.frame
           let originalBubbleFrame = self.bubblesView.frame
@@ -333,8 +356,11 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             self.bubblesView.frame.origin.x = -screenWidth
             
             }, completion: { finished in
-              
-              self.instructionsLabel.text = NSLocalizedString("Confirm Passcode", bundle: FrameworkBundle!, comment: "")
+              if self.state == .UpdateSet {
+                self.instructionsLabel.text = NSLocalizedString("Re-enter your new passcode", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
+              } else {
+                self.instructionsLabel.text = NSLocalizedString("Confirm Passcode", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
+              }
               self.instructionsLabel.frame.origin.x = screenWidth
               self.bubblesView.frame.origin.x = screenWidth
               for bubble in self.bubbles {
@@ -345,7 +371,9 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
               UIView.animateWithDuration(0.5, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
                 self.instructionsLabel.frame = originalInstructionsLabelFrame
                 self.bubblesView.frame = originalBubbleFrame
-                }, completion: nil)
+                }, completion: { [unowned self] _ in
+                  self.passcode.removeAll(keepCapacity: false)
+              })
               
           })
           
@@ -374,6 +402,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         self.configureKeys()
         return
       }
+      
         if number < 0 && self.passcode.count == 0 && self.state == .Set {
             self.dismiss()
             self.delegate.passcodeCanceled()
@@ -385,8 +414,8 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         } else if self.passcode.count > 0 {
             self.passcode.removeLast()
         }
-        
-        for (index, bubble) in enumerate(self.bubbles) {
+
+        for (index, bubble) in self.bubbles.enumerate() {
             if index <= self.passcode.count - 1 {
                 bubble.state = .Active
             } else {
@@ -395,7 +424,7 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
             
             bubble.updateStyle()
         }
-        
+
         if self.passcode.count == 4 {
             if self.state == .Check || self.state == .UpdateCheck {
                 self.checkPasscode()
@@ -406,9 +435,9 @@ class LTPasscode: UIViewController, LTPasscodeKeyDelegate {
         
         if self.state == .Set {
             if self.passcode.count == 0 {
-                self.keys.last?.numberLabel.text = NSLocalizedString("Cancel", bundle: FrameworkBundle!, comment: "")
+                self.keys.last?.numberLabel.text = NSLocalizedString("Cancel", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
             } else {
-                self.keys.last?.numberLabel.text = NSLocalizedString("Delete", bundle: FrameworkBundle!, comment: "")
+                self.keys.last?.numberLabel.text = NSLocalizedString("Delete", tableName: "Latch", bundle: NSBundle(forClass: Latch.self), comment: "")
             }
         }
     }

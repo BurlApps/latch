@@ -17,7 +17,7 @@ class LTStorage {
     // MARK: Initializer Method
     init() {
         let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
-        let documentsDirectory = paths.objectAtIndex(0)as NSString
+        let documentsDirectory = paths.objectAtIndex(0)as! NSString
         self.path = documentsDirectory.stringByAppendingPathComponent("Latch.plist")
         
         let fileManager = NSFileManager.defaultManager()
@@ -26,7 +26,11 @@ class LTStorage {
         if !fileManager.fileExistsAtPath(path)  {
             // If it doesn't, copy it from the default file in the Resources folder
             let bundle = NSBundle.mainBundle().pathForResource("Info", ofType: "plist")
-            fileManager.copyItemAtPath(bundle!, toPath: self.path, error:nil)
+          do {
+            try fileManager.copyItemAtPath(bundle!, toPath: self.path)
+          } catch {
+            fatalError("\(error)")
+          }
         }
         
         self.data = NSMutableArray(contentsOfFile: path)

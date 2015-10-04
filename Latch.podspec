@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Latch"
-  s.version      = "0.0.3"
+  s.version      = "0.0.8"
   s.summary      = "Easily use Passcode and Touch ID authentication!"
 
   s.description  = <<-DESC
@@ -23,6 +23,6 @@ Pod::Spec.new do |s|
   s.platform     = :ios, "8.0"
   s.source       = { :git => "https://github.com/SooJuicy/Latch.git", :tag => s.version }
   s.source_files  = "Framework/*.swift"
-  s.resources = "Framework/*.png", "Framework/*.{xib}"
+  s.resources = "Framework/*.png", "Framework/*.{xib}", "Framework/*.lproj"
   s.requires_arc = true
 end

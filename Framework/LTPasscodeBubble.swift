@@ -35,12 +35,12 @@ class LTPasscodeBubble: UIView {
     // MARK: Instance Methods
     func configureBubble() {
         // Create Frame
-        var bubbleWidth: CGFloat = 12
-        var bubbleHeight: CGFloat = 12
-        var bubblePadding: CGFloat = 8
+        let bubbleWidth: CGFloat = 12
+        let bubbleHeight: CGFloat = 12
+        let bubblePadding: CGFloat = 8
         
-        var bubbleCenterX = self.parentView.frame.width/2
-        var bubbleX = bubbleCenterX + ((bubbleWidth + bubblePadding) * (self.number - 2))
+        let bubbleCenterX = self.parentView.frame.width/2 + bubblePadding/2
+        let bubbleX = bubbleCenterX + ((bubbleWidth + bubblePadding) * (self.number - 2))
         
         self.frame = CGRectMake(bubbleX, 0, bubbleWidth, bubbleHeight)
         
